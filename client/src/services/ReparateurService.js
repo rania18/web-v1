@@ -24,8 +24,8 @@ const removeAll = () => {
   return http.delete(`/reparateurs`);
 };
 
-const findByTitle = title => {
-  return http.get(`/reparateurs?title=${title}`);
+const findByTitle = nom => {
+  return http.get(`/reparateurs?nom=${nom}`);
 };
 
 const ReparateurService = {

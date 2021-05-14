@@ -6,7 +6,7 @@ import {
   DELETE_ALL_CLIENTS,
 } from "./types";
 
-import ClientDataService from "../services/PanneService";
+import ClientDataService from "../services/ClientService";
 
 export const createClient = (nom, prenom, code, adresse, contact, tel, fax, email) => async (dispatch) => {
   try {

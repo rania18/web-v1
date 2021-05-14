@@ -8,9 +8,9 @@ import {
 
 import ReparateurDataService from "../services/ReparateurService";
 
-export const createReparateur = (title, description) => async (dispatch) => {
+export const createReparateur = (nom, email) => async (dispatch) => {
   try {
-    const res = await ReparateurDataService.create({ title, description });
+    const res = await ReparateurDataService.create({ nom, email });
 
     dispatch({
       type: CREATE_REPARATEUR,
@@ -79,9 +79,9 @@ export const deleteAllReparateurs = () => async (dispatch) => {
   }
 };
 
-export const findReparateursByTitle = (title) => async (dispatch) => {
+export const findReparateursByTitle = (nom) => async (dispatch) => {
   try {
-    const res = await  ReparateurDataService.findByTitle(title);
+    const res = await  ReparateurDataService.findByTitle(nom);
 
     dispatch({
       type: RETRIEVE_REPARATEURS,

@@ -26,10 +26,9 @@ export const createPanne = (name, description, photo) => async (dispatch) => {
 
 export const retrievePannes = () => async (dispatch) => {
   try {
-    const res = await axios.get("/pannes")
-    // PanneDataService.getAll();
-    
-     dispatch({
+    const res = await PanneDataService.getAll();
+
+    dispatch({
       type: RETRIEVE_PANNES,
       payload: res.data,
     });
@@ -37,6 +36,8 @@ export const retrievePannes = () => async (dispatch) => {
     console.log(err);
   }
 };
+
+
 
 export const updatePanne = (id, data) => async (dispatch) => {
   try {

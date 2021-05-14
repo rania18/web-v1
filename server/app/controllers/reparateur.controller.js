@@ -6,8 +6,8 @@ const Op = db.Sequelize.Op;
 // Create and Save new Reparateurs
 exports.createReparateur = (reparateur) => {
   return Reparateur.create({
-    title: reparateur.title,
-    description: reparateur.description,
+    nom: reparateur.nom,
+    email: reparateur.email,
   })
     .then((reparateur) => {
       console.log(">> Created reparateur: " + JSON.stringify(reparateur, null, 4));
@@ -73,7 +73,7 @@ exports.findAll = () => {
 // Create and Save a new reparateur
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.nom) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
@@ -82,8 +82,8 @@ exports.create = (req, res) => {
 
   // Create a reparateur
   const reparateur = {
-    title: req.body.title,
-    description: req.body.description,
+    nom: req.body.nom,
+    email: req.body.email,
     //published: req.body.published ? req.body.published : false
   };
 
@@ -102,8 +102,8 @@ exports.create = (req, res) => {
 
 // Retrieve all reparateurs from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+  const nom = req.query.nom;
+  var condition = nom ? { nom: { [Op.like]: `%${nom}%` } } : null;
 
   Reparateur.findAll({ where: condition })
     .then(data => {

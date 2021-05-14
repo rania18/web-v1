@@ -1,9 +1,9 @@
 module.exports = (sequelize, DataTypes) => {
   const Reparateur= sequelize.define("reparateur", {
-    title: {
+    nom: {
       type: DataTypes.STRING
     },
-    description: {
+    email: {
       type: DataTypes.STRING
     }
   });

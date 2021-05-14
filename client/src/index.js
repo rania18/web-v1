@@ -12,7 +12,7 @@ import AuthLayout from "layouts/Auth.js";
 
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './store';
+import store from './store.js';
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,44 +1,44 @@
 import {
-  CREATE_PANNE,
-  RETRIEVE_PANNES,
-  UPDATE_PANNE,
-  DELETE_PANNE,
-  DELETE_ALL_PANNES,
+  CREATE_VEHICULE,
+  RETRIEVE_VEHICULES,
+  UPDATE_VEHICULE,
+  DELETE_VEHICULE,
+  DELETE_ALL_VEHICULES,
 } from "../actions/types";
 
 const initialState = [];
 
-const panneReducer = (pannes = initialState, action) => {
+const vehiculeReducer = (vehicules = initialState, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case CREATE_PANNE:
-      return [...pannes, payload];
+    case CREATE_VEHICULE:
+      return [...vehicules, payload];
 
-    case RETRIEVE_PANNES:
+    case RETRIEVE_VEHICULES:
       return payload;
 
-    case UPDATE_PANNE:
-      return pannes.map((panne) => {
-        if (panne.id === payload.id) {
+    case UPDATE_VEHICULE:
+      return vehicules.map((vehicule) => {
+        if (vehicule.id === payload.id) {
           return {
-            ...panne,
+            ...vehicule,
             ...payload,
           };
         } else {
-          return panne;
+          return vehicule;
         }
       });
 
-    case DELETE_PANNE:
-      return pannes.filter(({ id }) => id !== payload.id);
+    case DELETE_VEHICULE:
+      return vehicules.filter(({ id }) => id !== payload.id);
 
-    case DELETE_ALL_PANNES:
+    case DELETE_ALL_VEHICULES:
       return [];
 
     default:
-      return pannes;
+      return vehicules;
   }
 };
 
-export default panneReducer;
+export default vehiculeReducer;
