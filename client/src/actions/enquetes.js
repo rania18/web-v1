@@ -3,7 +3,7 @@ import {
   RETRIEVE_ENQUETES,
   UPDATE_ENQUETE,
   DELETE_ENQUETE,
-  c,
+  DELETE_ALL_ENQUETES,
 } from "./types";
 
 import EnqueteDataService from "../services/EnqueteService";

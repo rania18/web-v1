@@ -29,9 +29,12 @@ import {
 import Header from "components/Headers/Header.js";
 import { Button } from "reactstrap";
 import { retrieveReparateurs } from "actions/reparateurs";
+import AddReparateur from "./AddReparateur";
+import EditReparateur from "./EditReparateur";
+import ActiveReparateur from "./ActiveReparateur";
 
 const Reparateurs = () => {
-  const [copiedText, setCopiedText] = useState();
+
 
   const reparateurs = useSelector(state => state.reparateurs);
   const dispatch = useDispatch();
@@ -54,9 +57,7 @@ const Reparateurs = () => {
               <h3 className="mb-0">List des clients</h3>
                 </Col>
                 <Col className="text-right" xs="12">
-                  <Button color="info" type="button">
-                    Ajouter un client
-                  </Button>
+                  <AddReparateur />
                 </Col>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
@@ -72,6 +73,8 @@ const Reparateurs = () => {
                   <tr>
                     <td>{reparateur.nom}</td>
                     <td>{reparateur.email} </td>
+                    <td><EditReparateur id={reparateur.id}/> </td>
+                    <td><ActiveReparateur id={reparateur.id}/> </td>
                   </tr>
                 </tbody>
                 ))}

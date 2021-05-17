@@ -12,6 +12,9 @@ module.exports = app => {
   // Retrieve a single reparateurs with id
   router.get("/:id", reparateurs.findOne);
 
+  // Retrieve all published pannes
+  router.get("/published", reparateurs.findAllPublished);
+
   // Update a reparateurs with id
   router.put("/:id", reparateurs.update);
 

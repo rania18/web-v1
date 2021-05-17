@@ -1,76 +1,79 @@
 const db = require("../models");
+const { clients } = require("../models");
 const Client = db.clients ;
-const Vehicule = db.vehicules;
+//const Vehicule = db.vehicules;
 const Op = db.Sequelize.Op;
 
-// Create and Save new clients
-exports.createClient = (client) => {
-  return Client.create({
-    nom: client.nom,
-    prenom: client.prenom,
-    code: client.code,
-    adresse: client.adresse,
-    contact: client.contact,
-    fax: client.fax,
-    email: client.email,
-    tel: client.tel,
 
-  })
-    .then((client) => {
-      console.log(">> Created client: " + JSON.stringify(client, null, 4));
-      return client;
-    })
-    .catch((err) => {
-      console.log(">> Error while creating client: ", err);
-    });
-};
+
+// // Create and Save new clients
+// exports.createClient = (client) => {
+
+//   return Client.create({
+//     nom: client.nom,
+//     prenom: client.prenom,
+//     code: client.code,
+//     adresse: client.adresse,
+//     contact: client.contact,
+//     fax: client.fax,
+//     email: client.email,
+//     tel: client.tel,
+//   })
+//     .then((client) => {
+//       console.log(">> Created client: " + JSON.stringify(client, null, 4));
+//       return client;
+//     })
+//     .catch((err) => {
+//       console.log(">> Error while creating client: ", err);
+//     });
+// };
 
 // Create and Save new vehicule
-exports.createVehicule = (clientId, vehicule) => {
-  return Vehicule.create({
-    name: vehicule.name,
-    text: vehicule.text,
-    clientId: clientId,
-  })
-    .then((vehicule) => {
-      console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
-      return vehicule;
-    })
-    .catch((err) => {
-      console.log(">> Error while creating vehicule: ", err);
-    });
-};
+// exports.createVehicule = (clientId, vehicule) => {
+//   return Vehicule.create({
+//     name: vehicule.name,
+//     text: vehicule.text,
+//     clientId: clientId,
+//   })
+//     .then((vehicule) => {
+//       console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
+//       return vehicule;
+//     })
+//     .catch((err) => {
+//       console.log(">> Error while creating vehicule: ", err);
+//     });
+// };
 
-// Get the vehicules for a given clients
-exports.findClientById = (clientId) => {
-  return Client.findByPk(clientId, { include: ["vehicules"] })
-    .then((client) => {
-      return client;
-    })
-    .catch((err) => {
-      console.log(">> Error while finding client: ", err);
-    });
-};
+// // Get the vehicules for a given clients
+// exports.findClientById = (clientId) => {
+//   return Client.findByPk(clientId, { include: ["vehicules"] })
+//     .then((client) => {
+//       return client;
+//     })
+//     .catch((err) => {
+//       console.log(">> Error while finding client: ", err);
+//     });
+// };
 
-// Get the vehicules for a given vehicule id
-exports.findVehiculeommentById = (id) => {
-  return Vehi$.findByPk(id, { include: ["client"] })
-    .then((client) => {
-      return client;
-    })
-    .catch((err) => {
-      console.log(">> Error while finding client: ", err);
-    });
-};
+// // Get the vehicules for a given vehicule id
+// exports.findVehiculeommentById = (id) => {
+//   return Vehi$.findByPk(id, { include: ["client"] })
+//     .then((client) => {
+//       return client;
+//     })
+//     .catch((err) => {
+//       console.log(">> Error while finding client: ", err);
+//     });
+// };
 
-// Get all clients include vehicules
-exports.findAll = () => {
-  return Client.findAll({
-    include: ["vehicules"],
-  }).then((clients) => {
-    return clients;
-  });
-};
+// // Get all clients include vehicules
+// exports.findAll = () => {
+//   return Client.findAll({
+//     include: ["vehicules"],
+//   }).then((clients) => {
+//     return clients;
+//   });
+// };
 
 
 
@@ -78,16 +81,16 @@ exports.findAll = () => {
 
 
 
-
 // Create and Save a new Client
+
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.nom) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
+  // if (!req.body.nom) {
+  //   res.status(400).send({
+  //     message: "Content can not be empty!"
+  //   });
+  //   return ;
+  // }
 
   // Create a Client
   const client = {
@@ -96,9 +99,9 @@ exports.create = (req, res) => {
     code: req.body.code,
     adresse: req.body.adresse,
     contact: req.body.contact,
+    tel: req.body.tel,
     fax: req.body.fax,
     email: req.body.email,
-    tel: req.body.tel,
   };
 
   // Save Client in the database
@@ -116,8 +119,8 @@ exports.create = (req, res) => {
 
 // Retrieve all Clients from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.like]: `%${title}%` } } : null;
+  const nom = req.query.nom;
+  var condition = nom ? { nom: { [Op.like]: `%${nom}%` } } : null;
 
   Client.findAll({ where: condition })
     .then(data => {

@@ -3,27 +3,27 @@ const Vehicule = db.vehicules;
 const Panne = db.pannes;
 
 // Create and Save new vehicule
-exports.createVehicule = (vehicule) => {
-  return Vehicule.create({
-    immatricule: vehicule.immatricule,
-    marque: vehicule.marque,
-    PMC: vehicule.PMC,
-    nChassis: vehicule.nChassis,
-    modele: vehicule.modele,
-    type: vehicule.type,
-    Kilometrage: vehicule.Kilometrage,
-    carburant: vehicule.carburant,
-    description: vehicule.description,
-    photoMat: vehicule.photoMat,
-  })
-    .then((vehicule) => {
-      console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
-      return vehicule;
-    })
-    .catch((err) => {
-      console.log(">> Error while creating vehicule: ", err);
-    });
-};
+// exports.createVehicule = (vehicule) => {
+//   return Vehicule.create({
+//     immatricule: vehicule.immatricule,
+//     marque: vehicule.marque,
+//     PMC: vehicule.PMC,
+//     nChassis: vehicule.nChassis,
+//     modele: vehicule.modele,
+//     type: vehicule.type,
+//     Kilometrage: vehicule.Kilometrage,
+//     carburant: vehicule.carburant,
+//     description: vehicule.description,
+//     photoMat: vehicule.photoMat,
+//   })
+//     .then((vehicule) => {
+//       console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
+//       return vehicule;
+//     })
+//     .catch((err) => {
+//       console.log(">> Error while creating vehicule: ", err);
+//     });
+// };
 
 // Create and Save new pannes
 exports.createPanne = (panneId, panne) => {
@@ -74,28 +74,29 @@ exports.findAll = () => {
 
 //------CRUD------
 
-// Create and Save a new Vehicule
+// // Create and Save a new Vehicule
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
+  if (!req.body.immatricule) {
     res.status(400).send({
       message: "Content can not be empty!"
     });
     return;
   }
 
-  // Create a vehicule
+   // Create a vehicule
   const vehicule = {
-    immatricule: vehicule.immatricule,
-    marque: vehicule.marque,
-    PMC: vehicule.PMC,
-    nChassis: vehicule.nChassis,
-    modele: vehicule.modele,
-    type: vehicule.type,
-    Kilometrage: vehicule.Kilometrage,
-    carburant: vehicule.carburant,
-    description: vehicule.description,
-    photoMat: vehicule.photoMat,
+    immatricule: req.body.immatricule,
+    marque: req.body.marque,
+    PMC: req.body.PMC,
+    nChassis: req.body.nChassis,
+    modele: req.body.modele,
+    type: req.body.type,
+    Kilometrage: req.body.Kilometrage,
+    carburant: req.body.carburant,
+    description: req.body.description,
+    photoMat: req.body.photoMat,
+  
   };
 
   // Save Vehicule in the database

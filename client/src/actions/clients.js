@@ -8,6 +8,8 @@ import {
 
 import ClientDataService from "../services/ClientService";
 
+
+
 export const createClient = (nom, prenom, code, adresse, contact, tel, fax, email) => async (dispatch) => {
   try {
     const res = await ClientDataService.create({ nom, prenom, code, adresse, contact, tel, fax, email });
@@ -35,6 +37,8 @@ export const retrieveClients = () => async (dispatch) => {
     console.log(err);
   }
 };
+
+
 
 export const updateClient = (id, data) => async (dispatch) => {
   try {
@@ -79,9 +83,9 @@ export const deleteAllClients = () => async (dispatch) => {
   }
 };
 
-export const findClientByTitle = (nom) => async (dispatch) => {
+export const findClientsByTitle = (name) => async (dispatch) => {
   try {
-    const res = await  ClientDataService.findByTitle(nom);
+    const res = await  ClientDataService.findByTitle(name);
 
     dispatch({
       type: RETRIEVE_CLIENTS,

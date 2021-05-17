@@ -3,12 +3,13 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  // Create a new clients
+  // Create a new Panne
+  // router.post("/", clients.create);
   router.post("/", clients.create);
+
 
   // Retrieve all clients
   router.get("/", clients.findAll);
-
 
   // Retrieve a single clients with id
   router.get("/:id", clients.findOne);
@@ -22,5 +23,5 @@ module.exports = app => {
   // Delete all clients
   router.delete("/", clients.deleteAll);
 
-  app.use('/api/clients', router);
+  app.use("/api/clients", router);
 };

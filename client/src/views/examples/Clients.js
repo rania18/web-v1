@@ -1,10 +1,9 @@
 
 import React , { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+//import {AddClient} from './AddClient'
 import {
-  retrieveClients,
-  findPannesByTitle,
-  deleteAllPannes,
+  retrieveClients
 } from "../../actions/clients";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -33,10 +32,14 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { Button } from "reactstrap";
+import AddClient from "./AddClient";
+import EditClient from "./EditClient";
+import DeleteClient from "./DeleteClient";
 
 const Clients = () => {
-  const [copiedText, setCopiedText] = useState();
+  const [show, setShow] = useState(false);
 
+  const handleShow = () => setShow(true);
   const clients = useSelector(state => state.clients);
   const dispatch = useDispatch();
 
@@ -58,9 +61,7 @@ const Clients = () => {
               <h3 className="mb-0">List des clients</h3>
                 </Col>
                 <Col className="text-right" xs="12">
-                  <Button color="info" type="button">
-                    Ajouter un client
-                  </Button>
+                    <AddClient />
                 </Col>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
@@ -79,9 +80,9 @@ const Clients = () => {
                     <th scope="col" />
                   </tr>
                 </thead>
-                {clients.map((client, index) => ( 
+                
                 <tbody>
-                   <tr>
+                  {clients.map((client, index) => (  <tr>
                    {/* <th scope="row">
                       <Media className="align-items-center">
                         <a
@@ -119,11 +120,13 @@ const Clients = () => {
                         is active
                       </Badge>
                     </td>
+                    <td><EditClient id={client.id}/> </td>
+                    <td><DeleteClient id={client.id}/> </td>
 
                   </tr>
-                 
+                  ))}
                 </tbody>
-             ))}
+            
              </Table>
               <CardFooter className="py-4">
                 <nav aria-label="...">

@@ -21,5 +21,5 @@ module.exports = app => {
   // Delete all pannes
   router.delete("/", pannes.deleteAll);
 
-  app.use('/api/pannes', router);
+  app.use("/api/pannes", router);
 };

@@ -25,7 +25,7 @@ db.enquetes = require("./enquete.model")(sequelize, Sequelize);
 db.vehicules = require("./vehicule.model")(sequelize, Sequelize);
 db.pannes = require("./pannes.model")(sequelize, Sequelize);
 db.reparateurs = require("./reparateur.model")(sequelize, Sequelize);
-db.clients = require("./client.model")(sequelize, Sequelize);
+db.clients = require("./clients.model")(sequelize, Sequelize);
 
 db.reponses.hasMany(db.questions, { as: "questions" });
 db.questions.belongsTo(db.reponses, {

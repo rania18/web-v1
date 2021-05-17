@@ -28,6 +28,9 @@ import {
 // core components
 import Header from "components/Headers/Header.js";
 import { retrieveVehicules } from "actions/vehicules";
+import AddVehicule from "./AddVehicule";
+import EditVehicule from "./EditVehicule";
+import DeleteVehicule from "./DeleteVehicule";
 
 const Vehicule = () => {
   const [copiedText, setCopiedText] = useState();
@@ -51,6 +54,9 @@ const Vehicule = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <h3 className="mb-0">Card véhicules</h3>
+                <Col className="text-right" xs="12">
+                <AddVehicule />
+                </Col>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
@@ -103,28 +109,9 @@ const Vehicule = () => {
                     <td>{vehicule.Kilometrage}</td>
                     <td>{vehicule.carburant}</td>
                     <td>{vehicule.description}</td>
-                    <td> 
-                    <Media className="align-items-center">
-                        <a
-                          className="avatar rounded-circle mr-3"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            src={
-                              require("../../assets/img/theme/bootstrap.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <Media>
-                          <span className="mb-0 text-sm">
-                            {vehicule.immatricule}
-                          </span>
-                        </Media>
-                      </Media>
-                    </td>
+                    <td><EditVehicule id={vehicule.id}/></td>
+                    <td><DeleteVehicule id={vehicule.id}/></td>
+                   
                   
                    
                   </tr>

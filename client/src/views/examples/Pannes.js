@@ -25,9 +25,16 @@ import {
   Container,
   Row,
   UncontrolledTooltip,
+  Col,
+  Button
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
+import AddEditPanne from "./AddClient";
+import AddClient from "./AddClient";
+import AddPanne from "./AddPanne";
+import EditPanne from "./EditPanne";
+import DeletePanne from "./DeletePanne";
 
 const Pannes = () => {
 
@@ -49,16 +56,21 @@ const Pannes = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-                <h3 className="mb-0">Card tables</h3>
+              <CardHeader className="border-0">
+              <Col xs="8">
+              <h3 className="mb-0">List des pannes</h3>
+                </Col>
+                <Col className="text-right" xs="12">
+                <AddPanne />
+                </Col>
+              </CardHeader>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
-                    <th scope="col">Project</th>
-                    <th scope="col">Budget</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Users</th>
-                    <th scope="col">Completion</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Photo</th>
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -91,10 +103,10 @@ const Pannes = () => {
                     <td>
                       <Badge color="" className="badge-dot mr-4">
                         <i className="bg-warning" />
-                        {panne.name}
+                        {panne.photo}
                       </Badge>
                     </td>
-                    <td>
+                    {/* <td>
                       <div className="avatar-group">
                         <a
                           className="avatar avatar-sm"
@@ -181,52 +193,12 @@ const Pannes = () => {
                           Jessica Doe
                         </UncontrolledTooltip>
                       </div>
-                    </td>
-                    <td>
-                      <div className="d-flex align-items-center">
-                        <span className="mr-2">60%</span>
-                        <div>
-                          <Progress
-                            max="100"
-                            value="60"
-                            barClassName="bg-danger"
-                          />
-                        </div>
-                      </div>
-                    </td>
+                    </td> */}
+                   
                     <td className="text-right">
-                      <UncontrolledDropdown>
-                        <DropdownToggle
-                          className="btn-icon-only text-light"
-                          href="#pablo"
-                          role="button"
-                          size="sm"
-                          color=""
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <i className="fas fa-ellipsis-v" />
-                        </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-arrow" right>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Action
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Another action
-                          </DropdownItem>
-                          <DropdownItem
-                            href="#pablo"
-                            onClick={(e) => e.preventDefault()}
-                          >
-                            Something else here
-                          </DropdownItem>
-                        </DropdownMenu>
-                      </UncontrolledDropdown>
+                     
+                        <EditPanne id={panne.id} />
+                        <DeletePanne id={panne.id} />
                     </td>
                   </tr>
                   
