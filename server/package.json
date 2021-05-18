@@ -1,16 +1,14 @@
 {
-  "name": "nodejs-sequelize-one-to-many",
+  "name": "tourvehicule",
   "version": "1.0.0",
-  "description": "Node.js Sequelize One to Many Relationship",
+  "description": "Node.js",
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js"
   },
   "keywords": [
     "nodejs",
-    "sequelize",
-    "one-to-many",
-    "association"
+    "sequelize"
   ],
   "author": "rania",
   "license": "",
