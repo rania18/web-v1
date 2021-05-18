@@ -35,6 +35,8 @@ import { Button } from "reactstrap";
 import AddClient from "./AddClient";
 import EditClient from "./EditClient";
 import DeleteClient from "./DeleteClient";
+import DetailClient from "./DetailClient";
+
 
 const Clients = () => {
   const [show, setShow] = useState(false);
@@ -162,8 +164,11 @@ const Clients = () => {
                         is active
                       </Badge>
                     </td>
+                    <td><DetailClient id={client.id}/> </td>
+
                     <td><EditClient id={client.id}/> </td>
                     <td><DeleteClient id={client.id}/> </td>
+
 
                   </tr>
                   ))}

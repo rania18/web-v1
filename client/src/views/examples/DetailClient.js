@@ -23,12 +23,13 @@ import {
   Col,
 } from "reactstrap";
 
-const DeleteClient = (props) => {
+const DetailClient = (props) => {
   //Modal ajou
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
+
   const initialClientState = {
     id: null,
     nom: "", 
@@ -41,7 +42,7 @@ const DeleteClient = (props) => {
     email: ""
   };
   const [currentClient, setCurrentClient] = useState(initialClientState);
-  const [message, setMessage] = useState("");
+  // const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -62,22 +63,12 @@ const DeleteClient = (props) => {
 
   
 
- 
-///////////////////////
-
-const removeClient = () => {
-  dispatch(deleteClient(currentClient.id))
-    .then(() => {
-      props.history.push("/clients");
-    })
-    .catch(e => {
-      console.log(e);
-    });
-    handleClose()
-};
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setCurrentClient({ ...currentClient, [name]: value });
+  };
   return (
     <>
-      
       <Button className="btn-icon btn-2"  size="sm" color="danger" type="button" onClick={handleShow}>
             <i className="ni ni-fat-remove" />
         </Button>
@@ -95,14 +86,33 @@ const removeClient = () => {
                 <h6 className="heading-small text-muted mb-4">
                   Etes-vous sur de vouloir supprimer cet élément ?
                 </h6>
-               
+                {/* <label
+                          className="form-control-label"
+                          htmlFor="input-username"
+                          id="nom"
+                          name="nom"
+                          value={currentClient.nom}
+                          onChange={handleInputChange}
+
+                        >{client.name}</label> */}
+
+                        <label
+                          className="form-control-alternative"
+                          // defaultValue="lucky.jesse"
+                          // id="input-username"
+                          // placeholder="Username"
+                          type="text"
+                          id="nom"
+                          name="nom"
+                          // onChange={handleInputChange}
+                        >{currentClient.nom}</label>
                 <hr className="my-4" />
                 <div className="pl-lg-4">
                   <FormGroup>
                     <Button variant="secondary" onClick={handleClose}>
                       non
                     </Button>
-                    <Button variant="primary"onClick={removeClient}>
+                    <Button variant="primary">
                       oui
                     </Button>
                   </FormGroup>
@@ -117,4 +127,4 @@ const removeClient = () => {
   );
 };
 
-export default DeleteClient;
+export default DetailClient;
