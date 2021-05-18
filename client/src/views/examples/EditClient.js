@@ -166,6 +166,8 @@ const EditClient = (props) => {
                           onChange={handleInputChange}
                         />
                       </FormGroup>
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -185,6 +187,8 @@ const EditClient = (props) => {
                           onChange={handleInputChange}
                         />
                       </FormGroup>
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -204,6 +208,8 @@ const EditClient = (props) => {
                           onChange={handleInputChange}
                         />
                       </FormGroup>
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -223,6 +229,8 @@ const EditClient = (props) => {
                           onChange={handleInputChange}
                         />
                       </FormGroup>
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -242,6 +250,8 @@ const EditClient = (props) => {
                           onChange={handleInputChange}
                         />
                       </FormGroup>
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"

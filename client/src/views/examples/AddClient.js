@@ -224,6 +224,8 @@ const AddClient = () => {
                           onChange={handleInputChange}
                         />
                       </FormGroup>
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -245,6 +247,8 @@ const AddClient = () => {
                         </Space>
                         
                       </FormGroup>
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"
@@ -263,6 +267,8 @@ const AddClient = () => {
                           onChange={handleInputChange}
                         />
                       </FormGroup>{" "}
+                      </Col>
+                    <Col lg="6">
                       <FormGroup>
                         <label
                           className="form-control-label"

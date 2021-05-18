@@ -73,10 +73,10 @@ const Clients = () => {
                     <th scope="col">Adresse</th>
                     <th scope="col">Contact</th>
                     <th scope="col">Tel</th>
-                    <th scope="col">Fax</th>
+                    {/* <th scope="col">Fax</th> */}
                     <th scope="col">Email</th>
                     <th scope="col">Status</th>
-
+                    <th scope="col" />
                     <th scope="col" />
                   </tr>
                 </thead>
@@ -106,14 +106,56 @@ const Clients = () => {
                       </Media>
                     </th>
                    */}
-                    <td>{client.nom}</td>
-                    <td>{client.prenom}</td>
-                    <td>{client.code}</td>
-                    <td>{client.adresse}</td>
-                    <td>{client.contact}</td>
-                    <td>{client.tel}</td>
-                    <td>{client.fax}</td>
-                    <td>{client.email}</td>
+                    {/* <td  scope="col">{client.nom}</td> */}
+                    <th>
+                    <Media>
+                          <span className="mb-0 text-sm">
+                          {client.nom}
+                          </span>
+                        </Media>
+                    </th>
+                    {/* <td  scope="col">{client.prenom}</td> */}
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                        {client.prenom}
+                      </Badge>
+                    </td>
+                    {/* <td  scope="col">{client.code}</td> */}
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                      {client.code}
+                      </Badge>
+                    </td>
+                    {/* <td  scope="col">{client.adresse}</td> */}
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                      {client.adresse}
+                      </Badge>
+                    </td>
+                    {/* <td  scope="col">{client.contact}</td> */}
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                      {client.contact}
+                      </Badge>
+                    </td>
+                    {/* <td  scope="col">{client.tel}</td> */}
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                      {client.tel}
+                      </Badge>
+                    </td>
+                    {/* <td  scope="col">{client.fax}</td> */}
+                    {/* <td>
+                      <Badge color="" className="badge-dot mr-4">
+                      {client.fax}
+                      </Badge>
+                    </td> */}
+                    {/* <td  scope="col">{client.email}</td> */}
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                      {client.email}
+                      </Badge>
+                    </td>
                     <td>
                       <Badge color="" className="badge-dot mr-4">
                         <i className="bg-warning" />
