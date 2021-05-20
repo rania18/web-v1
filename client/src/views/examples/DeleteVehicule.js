@@ -31,15 +31,15 @@ const DeleteVehicule = (props) => {
   
   
   const initialVehiculeState = {
-    id: null,
-    nom: "", 
-    prenom: "", 
-    code: "", 
-    adresse: "", 
-    contact: "", 
-    tel: "", 
-    fax: "", 
-    email: ""
+    // id: null,
+    // nom: "", 
+    // prenom: "", 
+    // code: "", 
+    // adresse: "", 
+    // contact: "", 
+    // tel: "", 
+    // fax: "", 
+    // email: ""
   };
   const [currentVehicule, setCurrentVehicule] = useState(initialVehiculeState);
   const [message, setMessage] = useState("");

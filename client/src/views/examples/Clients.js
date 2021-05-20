@@ -164,10 +164,10 @@ const Clients = () => {
                         is active
                       </Badge>
                     </td>
-                    <td><DetailClient id={client.id}/> </td>
+                    <td><DetailClient id={client.id}/>
 
-                    <td><EditClient id={client.id}/> </td>
-                    <td><DeleteClient id={client.id}/> </td>
+                    <EditClient id={client.id}/> 
+                  <DeleteClient id={client.id}/> </td>
 
 
                   </tr>

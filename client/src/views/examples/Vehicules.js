@@ -31,6 +31,7 @@ import { retrieveVehicules } from "actions/vehicules";
 import AddVehicule from "./AddVehicule";
 import EditVehicule from "./EditVehicule";
 import DeleteVehicule from "./DeleteVehicule";
+import DetailVehicule from "./DetailVehicule";
 
 const Vehicule = () => {
   const [copiedText, setCopiedText] = useState();
@@ -109,8 +110,11 @@ const Vehicule = () => {
                     <td>{vehicule.Kilometrage}</td>
                     <td>{vehicule.carburant}</td>
                     <td>{vehicule.description}</td>
-                    <td><EditVehicule id={vehicule.id}/></td>
-                    <td><DeleteVehicule id={vehicule.id}/></td>
+                    <td>
+                      <DetailVehicule id={vehicule.id}/>
+                      <EditVehicule id={vehicule.id}/>
+                    <DeleteVehicule id={vehicule.id}/>
+                     </td>
                    
                   
                    

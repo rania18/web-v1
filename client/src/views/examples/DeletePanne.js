@@ -30,15 +30,15 @@ const DeletePanne = (props) => {
   const handleShow = () => setShow(true);
   
   const initialPanneState = {
-    id: null,
-    nom: "", 
-    prenom: "", 
-    code: "", 
-    adresse: "", 
-    contact: "", 
-    tel: "", 
-    fax: "", 
-    email: ""
+    // id: null,
+    // nom: "", 
+    // prenom: "", 
+    // code: "", 
+    // adresse: "", 
+    // contact: "", 
+    // tel: "", 
+    // fax: "", 
+    // email: ""
   };
   const [currentPanne, setCurrentPanne] = useState(initialPanneState);
   const [message, setMessage] = useState("");

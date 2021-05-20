@@ -30,15 +30,15 @@ const DeleteClient = (props) => {
   const handleShow = () => setShow(true);
   
   const initialClientState = {
-    id: null,
-    nom: "", 
-    prenom: "", 
-    code: "", 
-    adresse: "", 
-    contact: "", 
-    tel: "", 
-    fax: "", 
-    email: ""
+    // id: null,
+    // nom: "", 
+    // prenom: "", 
+    // code: "", 
+    // adresse: "", 
+    // contact: "", 
+    // tel: "", 
+    // fax: "", 
+    // email: ""
   };
   const [currentClient, setCurrentClient] = useState(initialClientState);
   const [message, setMessage] = useState("");

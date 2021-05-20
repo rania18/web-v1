@@ -288,6 +288,7 @@ const AddClient = () => {
                     </Col>
                    
                   </Row>
+              
                 </div>
 
                 <hr className="my-4" />

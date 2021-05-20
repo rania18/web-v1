@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteClient, updateClient } from "../../actions/clients";
-import ClientDataService from "../../services/ClientService";
+import { deleteVehicule, updateVehicule } from "../../actions/clients";
+import VehiculeDataService from "../../services/VehiculeService";
 // reactstrap components
 import Axios from "axios";
 import { Modal } from "react-bootstrap";
@@ -23,14 +23,14 @@ import {
   Col,
 } from "reactstrap";
 
-const DetailClient = (props) => {
+const DetailVehicule = (props) => {
   //Modal ajou
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
 
-  const initialClientState = {
+  const initialVehiculeState = {
     id: null,
     nom: "", 
     prenom: "", 
@@ -41,15 +41,15 @@ const DetailClient = (props) => {
     fax: "", 
     email: ""
   };
-  const [currentClient, setCurrentClient] = useState(initialClientState);
+  const [currentVehicule, setCurrentVehicule] = useState(initialVehiculeState);
   // const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
-  const getClient = id => {
-    ClientDataService.get(id)
+  const getVehicule = id => {
+    VehiculeDataService.get(id)
       .then(response => {
-        setCurrentClient(response.data);
+        setCurrentVehicule(response.data);
         console.log(response.data);
       })
       .catch(e => {
@@ -58,7 +58,7 @@ const DetailClient = (props) => {
   };
 
   useEffect(() => {
-    getClient(props.id);
+    getVehicule(props.id);
   }, [props.id]);
 
   
@@ -77,7 +77,7 @@ const DetailClient = (props) => {
             <CardHeader className="bg-white border-0">
               <Row className="align-items-center">
                 <Col xs="8">
-                  <h3 className="mb-0">Détails client </h3>
+                  <h3 className="mb-0">Détails Panne </h3>
                 </Col>
               </Row>
             </CardHeader>
@@ -92,7 +92,7 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-username"
                         >
-                         Nom: {currentClient.nom}
+                         Immatricule: {currentVehicule.immatricule}
                         </label>
                       </FormGroup>
                     </Col>
@@ -102,7 +102,7 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-email"
                         >
-                         Prenom: {currentClient.prenom}
+                         Marque: {currentVehicule.marque}
                           
                         </label>
                       </FormGroup>
@@ -115,7 +115,7 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-first-name"
                         >
-                         Email: {currentClient.email}
+                         PMC: {currentVehicule.PMC}
                         </label>
                       </FormGroup>
                     </Col>
@@ -125,7 +125,7 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-last-name"
                         >
-                         Code: {currentClient.code}
+                         Num Chassis: {currentVehicule.nChassis}
                         </label>
                       </FormGroup>
                     </Col>
@@ -135,7 +135,7 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-last-name"
                         >
-                          Tel: {currentClient.tel}
+                          Modele: {currentVehicule.modele}
                         </label>
                       </FormGroup>
                       </Col>
@@ -145,7 +145,7 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-last-name"
                         >
-                         Adresse: {currentClient.adresse}
+                         Type: {currentVehicule.type}
                         </label>
                         <Space direction="vertical">
                        
@@ -159,7 +159,7 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-last-name"
                         >
-                         Contact: {currentClient.contact}
+                         Kilometrage: {currentVehicule.Kilometrage}
                         </label>
                       </FormGroup>{" "}
                       </Col>
@@ -169,7 +169,29 @@ const DetailClient = (props) => {
                           className="form-control-label"
                           htmlFor="input-last-name"
                         >
-                         Fax: {currentClient.fax}
+                         Carburant: {currentVehicule.carburant}
+                        </label>
+                      </FormGroup>
+                  
+                    </Col>
+                    <Col lg="6">
+                      <FormGroup>
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-last-name"
+                        >
+                         Description: {currentVehicule.description}
+                        </label>
+                      </FormGroup>
+                  
+                    </Col>
+                    <Col lg="6">
+                      <FormGroup>
+                        <label
+                          className="form-control-label"
+                          htmlFor="input-last-name"
+                        >
+                         photo: {currentVehicule.photoMat}
                         </label>
                       </FormGroup>
                   
@@ -189,4 +211,4 @@ const DetailClient = (props) => {
   );
 };
 
-export default DetailClient;
+export default DetailVehicule;
