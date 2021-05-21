@@ -26,6 +26,10 @@ db.vehicules = require("./vehicule.model")(sequelize, Sequelize);
 db.pannes = require("./pannes.model")(sequelize, Sequelize);
 db.reparateurs = require("./reparateur.model")(sequelize, Sequelize);
 db.clients = require("./clients.model")(sequelize, Sequelize);
+db.typepannes = require("./typepannes.model")(sequelize, Sequelize);
+db.taches = require("./taches.model")(sequelize, Sequelize);
+db.taches = require("./tache_panne.model")(sequelize, Sequelize);
+
 
 db.reponses.hasMany(db.questions, { as: "questions" });
 db.questions.belongsTo(db.reponses, {
@@ -57,10 +61,28 @@ db.vehicules.belongsTo(db.clients, {
   as: "client",
 });
 
-db.clients.hasMany(db.reponses, { as: "comments" });
+db.clients.hasMany(db.reponses, { as: "reponses" });
 db.reponses.belongsTo(db.clients, {
   foreignKey: "clientId",
   as: "client",
+});
+
+db.typepannes.hasMany(db.pannes, { as: "pannes" });
+db.pannes.belongsTo(db.typepannes, {
+  foreignKey: "typepannesId",
+  as: "typepanne",
+});
+
+db.pannes.belongsToMany(db.taches, {
+  through: "tache_panne",
+  as: "taches",
+  foreignKey: "panneId",
+});
+
+db.taches.belongsToMany(db.pannes, {
+  through: "tache_panne",
+  as: "pannes",
+  foreignKey: "tacheId",
 });
 
 module.exports = db;

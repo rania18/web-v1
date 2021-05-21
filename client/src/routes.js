@@ -7,7 +7,7 @@ import Register from "views/examples/Register.js";
 import Login from "views/examples/Login.js";
 import Satisfaction from "views/examples/Satisfaction.js";
 import Pannes from "views/examples/Pannes";
-import TypePannes from "views/examples/TypePannes";
+import TypePannes from "views/examples/Typepannes";
 
 import Clients from "views/examples/Clients";
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';

@@ -8,9 +8,9 @@ import {
 
 import TypepanneDataService from "../services/TypepanneService";
 
-export const createTypepanne = (title, description) => async (dispatch) => {
+export const createTypepanne = (name, description) => async (dispatch) => {
   try {
-    const res = await TypepanneDataService.create({ title, description });
+    const res = await TypepanneDataService.create({ name, description });
 
     dispatch({
       type: CREATE_TYPEPANNE,

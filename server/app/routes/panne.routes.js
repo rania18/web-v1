@@ -21,5 +21,8 @@ module.exports = app => {
   // Delete all pannes
   router.delete("/", pannes.deleteAll);
 
+  // // Add a taches to a pannes
+  // router.get("/", pannes.addTache);
+
   app.use("/api/pannes", router);
 };

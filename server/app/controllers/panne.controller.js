@@ -1,6 +1,7 @@
 const { pannes } = require("../models");
 const db = require("../models");
 const Panne = db.pannes;
+const Tache = db.taches;
 const Op = db.Sequelize.Op;
 
 // Create and Save a new Panne
@@ -18,6 +19,8 @@ exports.create = (req, res) => {
     name: req.body.name,
     description: req.body.description,
     photo: req.body.photo,
+    vehiculeId: req.body.vehiculeId,
+    reparateurId: req.body.reparateurId
   };
 
   // Save panne in the database
@@ -132,4 +135,61 @@ exports.deleteAll = (req, res) => {
     });
 };
 
+// Find a pannes for a given tache id
+exports.findById = (id) => {
+  return Panne.findByPk(id, {
+    include: [
+      {
+        model: Tache,
+        as: "taches",
+        attributes: ["id", "title", "description","photo"],
+        through: {
+          attributes: [],
+        }
+      },
+    ],
+  })
+    .then((panne) => {
+      return panne;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding panne: ", err);
+    });
+};
+
+// Add a taches to a pannes
+exports.addTache = (panneId, tacheId) => {
+  return Panne.findByPk(panneId)
+    .then((panne) => {
+      if (!panne) {
+        console.log("panne not found!");
+        return null;
+      }
+      return Tache.findByPk(tacheId).then((tache) => {
+        if (!tache) {
+          console.log("tache not found!");
+          return null;
+        }
+
+        panne.addTache(tache);
+        console.log(`>> added tache id=${tache.id} to Tag id=${panne.id}`);
+        return tag;
+      });
+    })
+    .catch((err) => {
+      console.log(">> Error while adding tache to Tag: ", err);
+    });
+};
+
+
+// Get the vehicules for a given clients
+exports.findPanneById = (PanneId) => {
+  return Panne.findByPk(PanneId, { include: ["tache"] })
+    .then((panne) => {
+      return panne;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding panne: ", err);
+    });
+};
 

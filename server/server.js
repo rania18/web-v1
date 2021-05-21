@@ -21,10 +21,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const db = require("./app/models");
 
 db.sequelize.sync();
-// drop the table if it already exists
-//db.sequelize.sync({ force: true }).then(() => {
-  // console.log("Drop and re-sync db.");
-//});
 
 // simple route
 app.get("/", (req, res) => {
@@ -39,6 +35,8 @@ require("./app/routes/question.routes")(app);
 require("./app/routes/reponse.routes")(app);
 require("./app/routes/client.routes")(app);
 require("./app/routes/reparateur.routes")(app);
+require("./app/routes/tache.routes")(app);
+require("./app/routes/typepanne.routes")(app);
 
 
 // set port, listen for requests
@@ -50,7 +48,3 @@ app.listen(PORT, () => {
 
 
 db.sequelize.sync();
-// db.sequelize.sync({ force: true }).then(() => {
-//   console.log("Drop and re-sync db.");
-//   // run();
-// });

@@ -57,14 +57,12 @@ const Pannes = () => {
           <div className="col">
             <Card className="shadow">
               <CardHeader className="border-0">
-              <CardHeader className="border-0">
               <Col xs="8">
               <h3 className="mb-0">List des pannes</h3>
                 </Col>
                 <Col className="text-right" xs="12">
                 <AddPanne />
                 </Col>
-              </CardHeader>
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
