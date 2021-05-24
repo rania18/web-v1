@@ -49,7 +49,7 @@ const DeleteClient = (props) => {
     ClientDataService.get(id)
       .then(response => {
         setCurrentClient(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(e => {
         console.log(e);

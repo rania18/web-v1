@@ -50,10 +50,10 @@ const DetailClient = (props) => {
     ClientDataService.get(id)
       .then(response => {
         setCurrentClient(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(e => {
-        console.log(e);
+        // console.log(e);
       });
   };
 
@@ -178,7 +178,7 @@ const DetailClient = (props) => {
                   </Row>
               
                 </div>
-
+               
                 
               </Form>
             </CardBody>

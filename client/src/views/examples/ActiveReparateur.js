@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { deleteClient, updateClient } from "../../actions/reparateurs";
-import  ReparateurDataService from "../../services/ReparateurService";
+import { deleteClient, updateClient } from "../../actions/clients";
+import  ClientDataService from "../../services/ClientService";
 // reactstrap components
 import Axios from "axios";
 import { Modal } from "react-bootstrap";
@@ -22,30 +22,30 @@ import {
   Row,
   Col,
 } from "reactstrap";
-import { updateReparateur } from "actions/reparateurs";
+// import { up } from "actions/clients";
 
-const ActiveReparateur = (props) => {
+const ActiveClient = (props) => {
   //Modal ajou
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-  const initialReparateurState = {
+  const initialClientState = {
     id: null,
     nom: "",
     email: "",
     published: false
   };
-  const [currentReparateur, setCurrentReparateur] = useState(initialReparateurState);
+  const [currentClient, setCurrentClient] = useState(initialClientState);
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
-  const getReparateur = id => {
-    ReparateurDataService.get(id)
+  const getClient = id => {
+    ClientDataService.get(id)
       .then(response => {
-        setCurrentReparateur(response.data);
-        console.log(response.data);
+        setCurrentClient(response.data);
+        // console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -53,7 +53,7 @@ const ActiveReparateur = (props) => {
   };
 
   useEffect(() => {
-    getReparateur(props.id);
+    getClient(props.id);
   }, [props.id]);
 
   
@@ -62,21 +62,21 @@ const ActiveReparateur = (props) => {
 ///////////////////////
 const updateStatus = status => {
   const data = {
-    id: currentReparateur.id,
-    nom: currentReparateur.title,
-    email: currentReparateur.description,
+    id: currentClient.id,
+    nom: currentClient.title,
+    email: currentClient.description,
     published: status
   };
 
-  dispatch(updateReparateur(currentReparateur.id, data))
+  dispatch(updateClient(currentClient.id, data))
     .then(response => {
-      console.log(response);
+      // console.log(response);
 
-      setCurrentReparateur({ ...currentReparateur, published: status });
+      setCurrentClient({ ...currentClient, published: status });
       setMessage("The status was updated successfully!");
     })
     .catch(e => {
-      console.log(e);
+      // console.log(e);
     });
 };
 
@@ -91,15 +91,16 @@ const updateStatus = status => {
             <CardHeader className="bg-white border-0">
               <Row className="align-items-center">
                 <Col xs="8">
-                  <h3 className="mb-0">Modifier Reparateur</h3>
+                  <h3 className="mb-0">Modifier Client</h3>
                 </Col>
               </Row>
             </CardHeader>
             <CardBody>
               <Form>
                 <h6 className="heading-small text-muted mb-4">
-                  Etes-vous sur de vouloir supprimer cet élément ?
+                {currentClient.published ? "Published" : "Pending"}
                 </h6>
+                
                
                 <hr className="my-4" />
                 <div className="pl-lg-4">
@@ -107,6 +108,22 @@ const updateStatus = status => {
                     <Button variant="secondary" onClick={handleClose}>
                       non
                     </Button>
+                    {currentClient.published ? (
+                       <button
+                       className="badge badge-primary mr-2"
+                       onClick={() => updateStatus(false)}
+                     >
+                       UnPublish
+                     </button>
+                   ) : (
+                     <button
+                       className="badge badge-primary mr-2"
+                       onClick={() => updateStatus(true)}
+                     >
+                       Publish
+                     </button>
+                   )}
+
                     <Button variant="primary"onClick={updateStatus}>
                       oui
                     </Button>
@@ -122,4 +139,4 @@ const updateStatus = status => {
   );
 };
 
-export default ActiveReparateur;
+export default ActiveClient;

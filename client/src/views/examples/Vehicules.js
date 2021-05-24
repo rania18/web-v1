@@ -1,10 +1,12 @@
 
 import React , { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+// import { Link } from 
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
 // reactstrap components
 import {
+  Button,
   Card,
   CardHeader,
   CardBody,
@@ -32,6 +34,8 @@ import AddVehicule from "./AddVehicule";
 import EditVehicule from "./EditVehicule";
 import DeleteVehicule from "./DeleteVehicule";
 import DetailVehicule from "./DetailVehicule";
+import Profile from "./Profile"
+import { Link } from "react-router-dom";
 
 const Vehicule = () => {
   const [copiedText, setCopiedText] = useState();
@@ -77,31 +81,9 @@ const Vehicule = () => {
                 </thead>
                 {vehicules.map((vehicule, index) => ( 
                 <tbody>
-                  <tr>
-                    {/* <th scope="row">
-                      <Media className="align-items-center">
-                        <a
-                          className="avatar rounded-circle mr-3"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            src={
-                              require("../../assets/img/theme/bootstrap.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <Media>
-                          <span className="mb-0 text-sm">
-                            {vehicule.immatricule}
-                          </span>
-                        </Media>
-                      </Media>
-                    </th>
-                    */}
-                    <td>{vehicule.immatricule}</td>
+                
+                    <Link to={`/admin/detail/${vehicule.id}`}>
+                     <tr> <td>{vehicule.immatricule}</td>
                     <td>{vehicule.marque}</td>
                     <td>{vehicule.PMC}</td>
                     <td>{vehicule.nChassis}</td>
@@ -116,9 +98,10 @@ const Vehicule = () => {
                     <DeleteVehicule id={vehicule.id}/>
                      </td>
                    
-                  
-                   
+                     
                   </tr>
+                  </Link>
+                   
                  
                 </tbody>
                  ))}

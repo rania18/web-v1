@@ -7,12 +7,14 @@ import questions from "./questions";
 import typepannes from "./typepannes";
 import reponses from "./reponses";
 import enquetes from "./enquetes";
-
+import auth from "./auth";
+import message from "./message";
 
 
 
 
 
 export default combineReducers({
-  pannes, vehicules, clients, reparateurs, questions, typepannes, reponses, enquetes
+  pannes, vehicules, clients, reparateurs, questions, typepannes, reponses, enquetes, auth,
+  message,
 });

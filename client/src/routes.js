@@ -12,6 +12,7 @@ import TypePannes from "views/examples/Typepannes";
 import Clients from "views/examples/Clients";
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import DriveEtaIcon from '@material-ui/icons/DriveEta';
+import DetailVehicules from "views/examples/DetailVehicules";
 
 var routes = [
   {
@@ -84,5 +85,14 @@ var routes = [
     component: Profile,
     layout: "/admin",
   },
+  {
+   path: "/detail/:id",
+    // name: "Profile",
+    // icon: "ni ni-circle-08 text-pink",
+  component: DetailVehicules,
+    layout: "/admin",
+  },
+
 ];
+
 export default routes;

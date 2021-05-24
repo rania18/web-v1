@@ -29,6 +29,8 @@ db.clients = require("./clients.model")(sequelize, Sequelize);
 db.typepannes = require("./typepannes.model")(sequelize, Sequelize);
 db.taches = require("./taches.model")(sequelize, Sequelize);
 db.taches = require("./tache_panne.model")(sequelize, Sequelize);
+db.user = require("../models/user.model.js")(sequelize, Sequelize);
+db.role = require("../models/role.model.js")(sequelize, Sequelize);
 
 
 db.reponses.hasMany(db.questions, { as: "questions" });
@@ -85,4 +87,16 @@ db.taches.belongsToMany(db.pannes, {
   foreignKey: "tacheId",
 });
 
+// db.role.belongsToMany(db.user, {
+//   through: "user_roles",
+//   foreignKey: "roleId",
+//   otherKey: "userId"
+// });
+// db.user.belongsToMany(db.role, {
+//   through: "user_roles",
+//   foreignKey: "userId",
+//   otherKey: "roleId"
+// });
+
+db.ROLES = ["user", "admin", "reparateur"];
 module.exports = db;

@@ -28,17 +28,34 @@ import {
   Container,
   Row,
   UncontrolledTooltip,
+  TabContent, TabPane, Nav, NavItem, NavLink, button, Button, CardTitle, CardText, 
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
-import { Button } from "reactstrap";
+// import { Button } from "reactstrap";
+//client
 import AddClient from "./AddClient";
 import EditClient from "./EditClient";
 import DeleteClient from "./DeleteClient";
 import DetailClient from "./DetailClient";
+import classnames from 'classnames';
+//import ActiveReparateur from "./ActiveReparateur";
+
+//reparateur
+import { retrieveReparateurs } from "actions/reparateurs";
+import AddReparateur from "./AddReparateur";
+import EditReparateur from "./EditReparateur";
+import ActiveReparateur from "./ActiveReparateur";
+
+const Clients = (props) => {
+
+  const [activeTab, setActiveTab] = useState('1');
+
+  const toggle = tab => {
+    if(activeTab !== tab) setActiveTab(tab);
+  }
 
 
-const Clients = () => {
   const [show, setShow] = useState(false);
 
   const handleShow = () => setShow(true);
@@ -49,10 +66,22 @@ const Clients = () => {
   useEffect(() => {
     dispatch(retrieveClients());
   }, []);
+
+  //reparateur
+  
+
+  const reparateurs = useSelector(state => state.reparateurs);
+
+
+  useEffect(() => {
+    dispatch(retrieveReparateurs());
+  }, []);
   return (
     <>
-      <Header />
+    
       {/* Page content */}
+      <Header />
+
       <Container className="mt--7" fluid>
         {/* Table */}
         <Row>
@@ -66,7 +95,29 @@ const Clients = () => {
                     <AddClient />
                 </Col>
               </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
+              <Nav tabs>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '1' })}
+            onClick={() => { toggle('1'); }}
+          >
+           Client
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink
+            className={classnames({ active: activeTab === '2' })}
+            onClick={() => { toggle('2'); }}
+          >
+            Reparateur
+          </NavLink>
+        </NavItem>
+      </Nav>
+      <TabContent activeTab={activeTab}>
+        <TabPane tabId="1">
+          <Row>
+            <Col sm="12">
+            <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">
                   <tr>
                     <th scope="col">Nom</th>
@@ -85,30 +136,7 @@ const Clients = () => {
                 
                 <tbody>
                   {clients.map((client, index) => (  <tr>
-                   {/* <th scope="row">
-                      <Media className="align-items-center">
-                        <a
-                          className="avatar rounded-circle mr-3"
-                          href="#pablo"
-                          onClick={(e) => e.preventDefault()}
-                        >
-                          <img
-                            alt="..."
-                            src={
-                              require("../../assets/img/theme/bootstrap.jpg")
-                                .default
-                            }
-                          />
-                        </a>
-                        <Media>
-                          <span className="mb-0 text-sm">
-                          {client.nom}
-                          </span>
-                        </Media>
-                      </Media>
-                    </th>
-                   */}
-                    {/* <td  scope="col">{client.nom}</td> */}
+                 
                     <th>
                     <Media>
                           <span className="mb-0 text-sm">
@@ -165,7 +193,7 @@ const Clients = () => {
                       </Badge>
                     </td>
                     <td><DetailClient id={client.id}/>
-
+                      <ActiveReparateur id={client.id} />
                     <EditClient id={client.id}/> 
                   <DeleteClient id={client.id}/> </td>
 
@@ -175,7 +203,40 @@ const Clients = () => {
                 </tbody>
             
              </Table>
-              <CardFooter className="py-4">
+              
+            </Col>
+          </Row>
+        </TabPane>
+        <TabPane tabId="2">
+          <Row>      
+                  <Col sm="12">
+
+                  <Table className="align-items-center table-flush" responsive>
+                <thead className="thead-light">
+                  <tr>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col" />
+                  </tr>
+                </thead>
+                {reparateurs.map((reparateur, index) => ( 
+                <tbody>
+                  <tr>
+                    <td>{reparateur.nom}</td>
+                    <td>{reparateur.email} </td>
+                    <td><EditReparateur id={reparateur.id}/> </td>
+                    <td><ActiveReparateur id={reparateur.id}/> </td>
+                  </tr>
+                </tbody>
+                ))}
+             </Table>
+             
+         </Col> 
+         </Row>
+          
+        </TabPane>
+      </TabContent>
+             <CardFooter className="py-4">
                 <nav aria-label="...">
                   <Pagination
                     className="pagination justify-content-end mb-0"

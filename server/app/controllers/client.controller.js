@@ -6,74 +6,75 @@ const Op = db.Sequelize.Op;
 
 
 
-// // Create and Save new clients
-// exports.createClient = (client) => {
+// Create and Save new clients
+exports.createClient = (client) => {
 
-//   return Client.create({
-//     nom: client.nom,
-//     prenom: client.prenom,
-//     code: client.code,
-//     adresse: client.adresse,
-//     contact: client.contact,
-//     fax: client.fax,
-//     email: client.email,
-//     tel: client.tel,
-//   })
-//     .then((client) => {
-//       console.log(">> Created client: " + JSON.stringify(client, null, 4));
-//       return client;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while creating client: ", err);
-//     });
-// };
+  return Client.create({
+    nom: client.nom,
+    prenom: client.prenom,
+    code: client.code,
+    adresse: client.adresse,
+    contact: client.contact,
+    fax: client.fax,
+    email: client.email,
+    tel: client.tel,
+    published: client.published,
+  })
+    .then((client) => {
+      console.log(">> Created client: " + JSON.stringify(client, null, 4));
+      return client;
+    })
+    .catch((err) => {
+      console.log(">> Error while creating client: ", err);
+    });
+};
 
 // Create and Save new vehicule
-// exports.createVehicule = (clientId, vehicule) => {
-//   return Vehicule.create({
-//     name: vehicule.name,
-//     text: vehicule.text,
-//     clientId: clientId,
-//   })
-//     .then((vehicule) => {
-//       console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
-//       return vehicule;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while creating vehicule: ", err);
-//     });
-// };
+exports.createVehicule = (clientId, vehicule) => {
+  return Vehicule.create({
+    name: vehicule.name,
+    text: vehicule.text,
+    clientId: clientId,
+  })
+    .then((vehicule) => {
+      console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
+      return vehicule;
+    })
+    .catch((err) => {
+      console.log(">> Error while creating vehicule: ", err);
+    });
+};
 
-// // Get the vehicules for a given clients
-// exports.findClientById = (clientId) => {
-//   return Client.findByPk(clientId, { include: ["vehicules"] })
-//     .then((client) => {
-//       return client;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while finding client: ", err);
-//     });
-// };
+// Get the vehicules for a given clients
+exports.findClientById = (clientId) => {
+  return Client.findByPk(clientId, { include: ["vehicules"] })
+    .then((client) => {
+      return client;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding client: ", err);
+    });
+};
 
-// // Get the vehicules for a given vehicule id
-// exports.findVehiculeommentById = (id) => {
-//   return Vehi$.findByPk(id, { include: ["client"] })
-//     .then((client) => {
-//       return client;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while finding client: ", err);
-//     });
-// };
+// Get the vehicules for a given vehicule id
+exports.findVehiculeommentById = (id) => {
+  return Vehi$.findByPk(id, { include: ["client"] })
+    .then((client) => {
+      return client;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding client: ", err);
+    });
+};
 
-// // Get all clients include vehicules
-// exports.findAll = () => {
-//   return Client.findAll({
-//     include: ["vehicules"],
-//   }).then((clients) => {
-//     return clients;
-//   });
-// };
+// Get all clients include vehicules
+exports.findAll = () => {
+  return Client.findAll({
+    include: ["vehicules"],
+  }).then((clients) => {
+    return clients;
+  });
+};
 
 
 
@@ -102,6 +103,7 @@ exports.create = (req, res) => {
     tel: req.body.tel,
     fax: req.body.fax,
     email: req.body.email,
+    published: req.body.published,
   };
 
   // Save Client in the database
@@ -217,3 +219,16 @@ exports.deleteAll = (req, res) => {
 };
 
 
+// find all published Client
+exports.findAllPublished = (req, res) => {
+  Client.findAll({ where: { published: true } })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Pannes."
+      });
+    });
+};

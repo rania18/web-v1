@@ -23,6 +23,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING
+    },
+    published: {
+      type: DataTypes.BOOLEAN
     }
   });
 

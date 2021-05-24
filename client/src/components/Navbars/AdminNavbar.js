@@ -1,22 +1,6 @@
-/*!
-
-=========================================================
-* Argon Dashboard React - v1.2.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/argon-dashboard-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-* Licensed under MIT (https://github.com/creativetimofficial/argon-dashboard-react/blob/master/LICENSE.md)
-
-* Coded by Creative Tim
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Router, Switch, Route, } from "react-router-dom";
 // reactstrap components
 import {
   DropdownMenu,
@@ -34,8 +18,34 @@ import {
   Container,
   Media,
 } from "reactstrap";
-
+import { history } from "../../helpers/history";
+import { logout } from "../../actions/auth";
+import { clearMessage } from "../../actions/message";
 const AdminNavbar = (props) => {
+
+  const [showReparateurBoard, setShowReparateurBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    history.listen((location) => {
+      dispatch(clearMessage()); // clear message when changing location
+    });
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (currentUser) {
+      setShowReparateurBoard(currentUser.roles.includes("ROLE_REPARATEUR"));
+      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+    }
+  }, [currentUser]);
+
+  const logOut = () => {
+    dispatch(logout());
+  };
+
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -58,6 +68,7 @@ const AdminNavbar = (props) => {
               </InputGroup>
             </FormGroup>
           </Form>
+          {/* {currentUser ? ( */}
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
               <DropdownToggle className="pr-0" nav>
@@ -73,7 +84,8 @@ const AdminNavbar = (props) => {
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      Rania hamdi
+                      {/* Rania hamdi */}
+                      {/* {currentUser.username} */}
                     </span>
                   </Media>
                 </Media>
@@ -101,7 +113,10 @@ const AdminNavbar = (props) => {
                 <DropdownItem divider />
                 <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
                   <i className="ni ni-user-run" />
-                  <span>Logout</span>
+                  <span>
+                  LogOut               
+                       {/* <a href="/login" className="nav-link" onClick={logOut} /> */}
+                  </span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

@@ -49,10 +49,10 @@ const EditClient = (props) => {
     ClientDataService.get(id)
       .then(response => {
         setCurrentClient(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       })
       .catch(e => {
-        console.log(e);
+        // console.log(e);
       });
   };
 
@@ -71,12 +71,12 @@ const EditClient = (props) => {
   const updateContent = () => {
     dispatch(updateClient(currentClient.id, currentClient))
       .then(response => {
-        console.log(response);
+        // console.log(response);
 
         setMessage("The client was updated successfully!");
       })
       .catch(e => {
-        console.log(e);
+        // console.log(e);
       });
       handleClose()
   };

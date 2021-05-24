@@ -13,6 +13,7 @@ import AuthLayout from "layouts/Auth.js";
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './store.js';
+import DetailVehicules from "views/examples/DetailVehicules";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -20,6 +21,7 @@ ReactDOM.render(
     <Switch>
       <Route path="/admin" render={(props) => <AdminLayout {...props} />} />
       <Route path="/auth" render={(props) => <AuthLayout {...props} />} />
+      {/* <Route path="/detail" render={props=><AdminLayout {...props}/>} /> */}
       <Redirect from="/" to="/admin/index" />
     </Switch>
   </BrowserRouter>

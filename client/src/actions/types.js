@@ -53,3 +53,14 @@ export const RETRIEVE_ENQUETES = "RETRIEVE_ENQUETES";
 export const UPDATE_ENQUETE = "UPDATE_ENQUETE";
 export const DELETE_ENQUETE = "DELETE_ENQUETE";
 export const DELETE_ALL_ENQUETES = "DELETE_ALL_ENQUETES";
+
+//Action Auth
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
+
+// Auth message
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
