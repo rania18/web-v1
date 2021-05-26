@@ -18,7 +18,7 @@ exports.createClient = (client) => {
     fax: client.fax,
     email: client.email,
     tel: client.tel,
-    published: client.published,
+    status: client.status,
   })
     .then((client) => {
       console.log(">> Created client: " + JSON.stringify(client, null, 4));
@@ -103,7 +103,7 @@ exports.create = (req, res) => {
     tel: req.body.tel,
     fax: req.body.fax,
     email: req.body.email,
-    published: req.body.published,
+    status: req.body.status,
   };
 
   // Save Client in the database
@@ -219,9 +219,9 @@ exports.deleteAll = (req, res) => {
 };
 
 
-// find all published Client
-exports.findAllPublished = (req, res) => {
-  Client.findAll({ where: { published: true } })
+// find all status Client
+exports.findAllStatus = (req, res) => {
+  Client.findAll({ where: { status: true } })
     .then(data => {
       res.send(data);
     })

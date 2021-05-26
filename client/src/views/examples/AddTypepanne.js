@@ -21,6 +21,8 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { ChromePicker, PhotoshopPicker, TwitterPicker } from "react-color";
+import Color from "./Color";
 
 const AddTypepanne = () => {
   //Modal ajou
@@ -36,7 +38,6 @@ const AddTypepanne = () => {
   };
   const [typepanne, setTypepanne] = useState(initialTypepanneState);
 
-
   const dispatch = useDispatch();
 
   const handleInputChange = (event) => {
@@ -47,7 +48,7 @@ const AddTypepanne = () => {
   const saveTypepanne = () => {
     const { name, description } = typepanne;
 
-    dispatch(createTypepanne(name, description))
+    dispatch(createTypepanne(name, color))
       .then((data) => {
         setTypepanne({
           id: data.id,
@@ -55,98 +56,113 @@ const AddTypepanne = () => {
           description: data.description,
           // photo: data.photo,
         });
-     
       })
       .catch((e) => {
-       // console.log(e);
+        // console.log(e);
       });
-      handleClose()
+    handleClose();
   };
 
-  
+  //color
+  const [color, setColor] = useState("#fff");
 
   return (
     <>
-      
-        <Button color="primary" onClick={handleShow}>
-          Ajouter type panne
-        </Button>
-   
-        <Modal show={show} onHide={handleClose}>
-          <Card className="bg-secondary shadow">
-            <CardHeader className="bg-white border-0">
-              <Row className="align-items-center">
-                <Col xs="8">
-                  <h3 className="mb-0">Ajouter type panne</h3>
-                </Col>
-              </Row>
-            </CardHeader>
-            <CardBody>
-              <Form>
-                <h6 className="heading-small text-muted mb-4">
-                  type panne information
-                </h6>
-                <div className="pl-lg-4">
-                  <Row>
-                    <Col lg="6">
-                      <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-username"
-                        >
-                          Titre
-                        </label>
-                        <Input
-                          className="form-control-alternative"
-                          // defaultValue="lucky.jesse"
-                          // id="input-username"
-                          // placeholder="Username"
-                          type="text"
-                          name="name"
-                          value={typepanne.name}
-                          onChange={handleInputChange}
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col lg="6">
-                      <FormGroup>
-                        <label
-                          className="form-control-label"
-                          htmlFor="input-email"
-                        >
-                          Description
-                        </label>
-                        <Input
-                          className="form-control-alternative"
-                          // id="input-email"
-                          // placeholder="jesse@example.com"
-                          type="text"
-                          name="description"
-                          value={typepanne.description}
-                          onChange={handleInputChange}
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                
-                </div>
+      <Button color="primary" onClick={handleShow}>
+        Ajouter type panne
+      </Button>
 
-                <hr className="my-4" />
-                <div className="pl-lg-4">
-                  <FormGroup>
-                    <Button variant="secondary" onClick={handleClose}>
-                      Close
-                    </Button>
-                    <Button variant="primary" onClick={saveTypepanne}>
-                      Save Changes
-                    </Button>
-                  </FormGroup>
-                </div>
-              </Form>
-            </CardBody>
-          </Card>
-        </Modal>
-    
+      <Modal show={show} onHide={handleClose}>
+        <Card className="bg-secondary shadow">
+          <CardHeader className="bg-white border-0">
+            <Row className="align-items-center">
+              <Col xs="8">
+                <h3 className="mb-0">Ajouter type panne</h3>
+              </Col>
+            </Row>
+          </CardHeader>
+          <CardBody>
+            <Form>
+              <h6 className="heading-small text-muted mb-4">
+                type panne information
+              </h6>
+              <div className="pl-lg-4">
+                <Row>
+                  <Col lg="6">
+                    <FormGroup>
+                      <label
+                        className="form-control-label"
+                        htmlFor="input-username"
+                      >
+                        Titre
+                      </label>
+                      <Input
+                        className="form-control-alternative"
+                        // defaultValue="lucky.jesse"
+                        // id="input-username"
+                        // placeholder="Username"
+                        type="text"
+                        name="name"
+                        value={typepanne.name}
+                        onChange={handleInputChange}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col lg="6">
+                    <FormGroup>
+                      <label
+                        className="form-control-label"
+                        htmlFor="input-email"
+                      >
+                        Description
+                      </label>
+                      <Input
+                        className="form-control-alternative"
+                        // id="input-email"
+                        // placeholder="jesse@example.com"
+                        type="text"
+                        name="description"
+                        value={color}
+                        onChange={handleInputChange}
+                      />
+                    </FormGroup>
+                  </Col>
+                  <Col lg="6">
+                    <FormGroup>
+                      {/* <Color /> */}
+                      <ChromePicker
+                        color={color}
+                        onChange={(updateColor) => setColor(updateColor.hex)}
+                      />
+                      <h1>{color}</h1>
+                      <Input
+                        className="form-control-alternative"
+                        // id="input-email"
+                        // placeholder="jesse@example.com"
+                        type="text"
+                        name="description"
+                        value={color}
+                      />
+                    </FormGroup>
+                  </Col>
+                </Row>
+              </div>
+
+              <hr className="my-4" />
+              <div className="pl-lg-4">
+                <FormGroup>
+                  <Button variant="secondary" onClick={handleClose}>
+                    Close
+                  </Button>
+                  <Button variant="primary" onClick={saveTypepanne}>
+                    Save Changes
+                  </Button>
+                </FormGroup>
+              </div>
+            </Form>
+          </CardBody>
+        </Card>
+      </Modal>
     </>
   );
 };

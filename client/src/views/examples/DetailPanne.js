@@ -31,15 +31,7 @@ const DetailPanne = (props) => {
   
 
   const initialPanneState = {
-    // id: null,
-    // nom: "", 
-    // prenom: "", 
-    // code: "", 
-    // adresse: "", 
-    // contact: "", 
-    // tel: "", 
-    // fax: "", 
-    // email: ""
+ 
   };
   const [currentPanne, setCurrentPanne] = useState(initialPanneState);
   // const [message, setMessage] = useState("");

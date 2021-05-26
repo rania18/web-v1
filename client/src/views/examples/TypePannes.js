@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "../../assets/css/color.css"
 // reactstrap components
 import {
   Badge,
@@ -27,6 +28,7 @@ import { retrieveTypepannes } from "actions/typepannes";
 import AddTypepanne from "./AddTypepanne";
 import EditTypepanne from "./EditTypepanne";
 import DetailTypepanne from "./DetailTypepanne";
+import { PhotoshopPicker } from "react-color";
 // import { AddTypepanne } from "./AddTypepanne";
 
 const Typepannes = () => {
@@ -89,8 +91,14 @@ const Typepannes = () => {
                       </th>
                       <td>
                         <Badge color="" className="badge-dot mr-4">
-                          <i className="bg-warning" />
-                          {typepanne.description}
+                          {/* <i className="bg-warning"  style={{color:typepanne.description}}/> */}
+                             <div  style={{backgroundColor:typepanne.description }} className="colorCercle"  ></div>
+                          {/* {typepanne.description} */}
+                        </Badge>
+                      </td>
+                      <td>
+                        <Badge color="" className="badge-dot mr-4">
+                          {/* <i className="bg-warning" /> */}
                         </Badge>
                       </td>
                       <td>

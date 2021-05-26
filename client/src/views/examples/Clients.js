@@ -3,7 +3,7 @@ import React , { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //import {AddClient} from './AddClient'
 import {
-  retrieveClients
+  retrieveClients, updateClient
 } from "../../actions/clients";
 // react component that copies the given text inside your clipboard
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -67,6 +67,35 @@ const Clients = (props) => {
     dispatch(retrieveClients());
   }, []);
 
+
+  //status
+  const initialClientState = {
+    id: null,
+    nom: "",
+    email: "",
+    status: false
+  };
+  const [currentClient, setCurrentClient] = useState(initialClientState);
+  const [message, setMessage] = useState("");
+  const updateStatus = status => {
+    const data = {
+      // id: currentClient.id,
+      // nom: currentClient.title,
+      // email: currentClient.description,
+      status: status
+    };
+  
+    dispatch(updateClient(currentClient.id, data))
+      .then(response => {
+        // console.log(response);
+  
+        setCurrentClient({ ...currentClient, status: status });
+        setMessage("The status was updated successfully!");
+      })
+      .catch(e => {
+        // console.log(e);
+      });
+    }
   //reparateur
   
 
@@ -76,6 +105,9 @@ const Clients = (props) => {
   useEffect(() => {
     dispatch(retrieveReparateurs());
   }, []);
+
+  //status
+  
   return (
     <>
     
@@ -89,10 +121,11 @@ const Clients = (props) => {
             <Card className="shadow">
               <CardHeader className="border-0">
               <Col xs="8">
-              <h3 className="mb-0">List des clients</h3>
+              <h3 className="mb-0">List des utilisateurs</h3>
                 </Col>
                 <Col className="text-right" xs="12">
                     <AddClient />
+                    <AddReparateur />
                 </Col>
               </CardHeader>
               <Nav tabs>
@@ -188,10 +221,29 @@ const Clients = (props) => {
                     </td>
                     <td>
                       <Badge color="" className="badge-dot mr-4">
-                        <i className="bg-warning" />
-                        is active
+                        {client.status ? <i className="bg-success" /> : <i className="bg-warning" />}
+
+                        {client.status ? "Active" : "Enable"}
                       </Badge>
                     </td>
+                    <td>   
+                      {client.status ? (
+                             <Button className="btn-icon btn-2"  size="sm" color="danger" type="button" 
+
+                      //  className="badge badge-primary mr-2"
+                       onClick={() => updateStatus(false)}
+                     >
+                       Enable
+                     </Button>
+                   ) : (
+                     <Button className="btn-icon btn-2"  size="sm" color="success" type="button" 
+
+                      //  className="badge badge-primary mr-2"
+                       onClick={() => updateStatus(true)}
+                     >
+                       Active
+                     </Button>
+                   )}</td>
                     <td><DetailClient id={client.id}/>
                       <ActiveReparateur id={client.id} />
                     <EditClient id={client.id}/> 

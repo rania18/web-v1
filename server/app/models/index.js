@@ -69,9 +69,15 @@ db.reponses.belongsTo(db.clients, {
   as: "client",
 });
 
+// db.vehicules.hasMany(db.pannes, { as: "pannes" });
+// db.pannes.belongsTo(db.vehicules, {
+//   foreignKey: "vehiculeId",
+//   as: "vehicule",
+// });
+
 db.typepannes.hasMany(db.pannes, { as: "pannes" });
 db.pannes.belongsTo(db.typepannes, {
-  foreignKey: "typepannesId",
+  foreignKey: "typepanneId",
   as: "typepanne",
 });
 

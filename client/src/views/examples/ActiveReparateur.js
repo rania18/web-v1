@@ -34,7 +34,7 @@ const ActiveClient = (props) => {
     id: null,
     nom: "",
     email: "",
-    published: false
+    status: false
   };
   const [currentClient, setCurrentClient] = useState(initialClientState);
   const [message, setMessage] = useState("");
@@ -65,14 +65,14 @@ const updateStatus = status => {
     id: currentClient.id,
     nom: currentClient.title,
     email: currentClient.description,
-    published: status
+    status: status
   };
 
   dispatch(updateClient(currentClient.id, data))
     .then(response => {
       // console.log(response);
 
-      setCurrentClient({ ...currentClient, published: status });
+      setCurrentClient({ ...currentClient, status: status });
       setMessage("The status was updated successfully!");
     })
     .catch(e => {
@@ -98,7 +98,7 @@ const updateStatus = status => {
             <CardBody>
               <Form>
                 <h6 className="heading-small text-muted mb-4">
-                {currentClient.published ? "Published" : "Pending"}
+                {currentClient.status ? "Active" : "Enable"}
                 </h6>
                 
                
@@ -108,19 +108,19 @@ const updateStatus = status => {
                     <Button variant="secondary" onClick={handleClose}>
                       non
                     </Button>
-                    {currentClient.published ? (
+                    {currentClient.status ? (
                        <button
                        className="badge badge-primary mr-2"
                        onClick={() => updateStatus(false)}
                      >
-                       UnPublish
+                       Enable
                      </button>
                    ) : (
                      <button
                        className="badge badge-primary mr-2"
                        onClick={() => updateStatus(true)}
                      >
-                       Publish
+                       Active
                      </button>
                    )}
 

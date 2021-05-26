@@ -11,7 +11,6 @@ import TypepanneDataService from "../services/TypepanneService";
 export const createTypepanne = (name, description) => async (dispatch) => {
   try {
     const res = await TypepanneDataService.create({ name, description });
-
     dispatch({
       type: CREATE_TYPEPANNE,
       payload: res.data,

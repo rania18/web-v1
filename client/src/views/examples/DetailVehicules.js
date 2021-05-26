@@ -20,7 +20,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { retrieveVehicules } from "actions/vehicules";
 import VehiculeDataService from "../../services/VehiculeService";
 import Header from "components/Headers/Header";
-
+import PanneDataService from "../../services/PanneService";
+import {
+  retrievePannes
+ 
+} from "../../actions/pannes";
 const DetailVehicules = ({match}) => {
 
   useEffect(() => {
@@ -60,8 +64,6 @@ const DetailVehicules = ({match}) => {
   }, [match.params.id]);
 
   
-
-
   const vehicule = useSelector(state => state.vehicules).find(elm=>elm.id==match.params.id)
   console.log(vehicule)
   return (
@@ -233,6 +235,8 @@ const DetailVehicules = ({match}) => {
                   </Row>
               
                   <hr className="my-4" />
+                       
+                   
                   <p>
                     Ryan — the name taken by Melbourne-raised, Brooklyn-based
                     Nick Murphy — writes, performs and records all of his own

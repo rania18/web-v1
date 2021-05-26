@@ -82,7 +82,7 @@ const Vehicule = () => {
                 {vehicules.map((vehicule, index) => ( 
                 <tbody>
                 
-                    <Link to={`/admin/detail/${vehicule.id}`}>
+                    
                      <tr> <td>{vehicule.immatricule}</td>
                     <td>{vehicule.marque}</td>
                     <td>{vehicule.PMC}</td>
@@ -92,15 +92,15 @@ const Vehicule = () => {
                     <td>{vehicule.Kilometrage}</td>
                     <td>{vehicule.carburant}</td>
                     <td>{vehicule.description}</td>
-                    <td>
-                      <DetailVehicule id={vehicule.id}/>
+                    <td><Link to={`/admin/detail/${vehicule.id}`}>
+                      <DetailVehicule id={vehicule.id}/>  </Link>
                       <EditVehicule id={vehicule.id}/>
                     <DeleteVehicule id={vehicule.id}/>
                      </td>
                    
                      
                   </tr>
-                  </Link>
+                
                    
                  
                 </tbody>

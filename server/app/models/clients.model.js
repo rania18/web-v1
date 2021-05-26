@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     email: {
       type: DataTypes.STRING
     },
-    published: {
+    status: {
       type: DataTypes.BOOLEAN
     }
   });

@@ -112,11 +112,11 @@ const AdminNavbar = (props) => {
                 </DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
-                  <i className="ni ni-user-run" />
+                <i className="ni ni-user-run" />
                   <span>
                   LogOut               
-                       {/* <a href="/login" className="nav-link" onClick={logOut} /> */}
-                  </span>
+                      <a href="/login" className="nav-link" onClick={logOut} /> 
+                </span>
                 </DropdownItem>
               </DropdownMenu>
             </UncontrolledDropdown>

@@ -3,27 +3,27 @@ const Vehicule = db.vehicules;
 const Panne = db.pannes;
 
 // Create and Save new vehicule
-// exports.createVehicule = (vehicule) => {
-//   return Vehicule.create({
-//     immatricule: vehicule.immatricule,
-//     marque: vehicule.marque,
-//     PMC: vehicule.PMC,
-//     nChassis: vehicule.nChassis,
-//     modele: vehicule.modele,
-//     type: vehicule.type,
-//     Kilometrage: vehicule.Kilometrage,
-//     carburant: vehicule.carburant,
-//     description: vehicule.description,
-//     photoMat: vehicule.photoMat,
-//   })
-//     .then((vehicule) => {
-//       console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
-//       return vehicule;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while creating vehicule: ", err);
-//     });
-// };
+exports.createVehicule = (vehicule) => {
+  return Vehicule.create({
+    immatricule: vehicule.immatricule,
+    marque: vehicule.marque,
+    PMC: vehicule.PMC,
+    nChassis: vehicule.nChassis,
+    modele: vehicule.modele,
+    type: vehicule.type,
+    Kilometrage: vehicule.Kilometrage,
+    carburant: vehicule.carburant,
+    description: vehicule.description,
+    photoMat: vehicule.photoMat,
+  })
+    .then((vehicule) => {
+      console.log(">> Created vehicule: " + JSON.stringify(vehicule, null, 4));
+      return vehicule;
+    })
+    .catch((err) => {
+      console.log(">> Error while creating vehicule: ", err);
+    });
+};
 
 // Create and Save new pannes
 exports.createPanne = (panneId, panne) => {
@@ -72,6 +72,10 @@ exports.findAll = () => {
   });
 };
 
+
+//get pannes from idVehicule
+
+
 //------CRUD------
 
 // // Create and Save a new Vehicule
@@ -112,7 +116,7 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all Vehicules from the database.
+// // Retrieve all Vehicules from the database.
 exports.findAll = (req, res) => {
   const immatricule = req.query.immatricule;
   var condition = immatricule ? { immatricule: { [Op.like]: `%${immatricule}%` } } : null;
