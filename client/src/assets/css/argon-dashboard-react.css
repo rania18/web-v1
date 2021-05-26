@@ -16145,3 +16145,9 @@ button:focus, :focus {
   margin-right: 10px; }
 
 /*# sourceMappingURL=argon-dashboard-react.css.map */
+
+.colorCercle{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}

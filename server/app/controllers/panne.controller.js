@@ -20,7 +20,9 @@ exports.create = (req, res) => {
     description: req.body.description,
     photo: req.body.photo,
     vehiculeId: req.body.vehiculeId,
-    reparateurId: req.body.reparateurId
+    reparateurId: req.body.reparateurId,
+    typepanneId: req.body.typepanneId
+
   };
 
   // Save panne in the database

@@ -40,7 +40,7 @@ export const updateTypepannes = (id, data) => async (dispatch) => {
     const res = await TypepanneDataService.update(id, data);
 
     dispatch({
-      type: UPDATE_TYPEPANNE,
+      type: DELETE_TYPEPANNE,
       payload: data,
     });
 

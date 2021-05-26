@@ -127,14 +127,14 @@ const AddTypepanne = () => {
                       />
                     </FormGroup>
                   </Col>
-                  <Col lg="6">
+                  {/* <Col lg="6">
                     <FormGroup>
                       {/* <Color /> */}
                       <ChromePicker
                         color={color}
                         onChange={(updateColor) => setColor(updateColor.hex)}
                       />
-                      <h1>{color}</h1>
+                      {/* <h1>{color}</h1>
                       <Input
                         className="form-control-alternative"
                         // id="input-email"
@@ -145,6 +145,7 @@ const AddTypepanne = () => {
                       />
                     </FormGroup>
                   </Col>
+               */} 
                 </Row>
               </div>
 

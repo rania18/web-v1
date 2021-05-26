@@ -226,24 +226,7 @@ const Clients = (props) => {
                         {client.status ? "Active" : "Enable"}
                       </Badge>
                     </td>
-                    <td>   
-                      {client.status ? (
-                             <Button className="btn-icon btn-2"  size="sm" color="danger" type="button" 
-
-                      //  className="badge badge-primary mr-2"
-                       onClick={() => updateStatus(false)}
-                     >
-                       Enable
-                     </Button>
-                   ) : (
-                     <Button className="btn-icon btn-2"  size="sm" color="success" type="button" 
-
-                      //  className="badge badge-primary mr-2"
-                       onClick={() => updateStatus(true)}
-                     >
-                       Active
-                     </Button>
-                   )}</td>
+                    
                     <td><DetailClient id={client.id}/>
                       <ActiveReparateur id={client.id} />
                     <EditClient id={client.id}/> 

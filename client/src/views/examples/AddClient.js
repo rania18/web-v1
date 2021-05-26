@@ -258,15 +258,15 @@ const AddClient = () => {
                         </label>
                         <Input
                           className="form-control-alternative"
-                          defaultValue="contact"
-                          id="input-last-name"
-                          placeholder="contact"
+                          // defaultValue="contact"
+                          // id="input-last-name"
+                          // placeholder="contact"
                           type="text"
                           name="contact"
                           value={client.contact}
                           onChange={handleInputChange}
                         />
-                      </FormGroup>{" "}
+                      </FormGroup>
                       </Col>
                     <Col lg="6">
                       <FormGroup>
@@ -278,9 +278,11 @@ const AddClient = () => {
                         </label>
                         <Input
                           className="form-control-alternative"
-                          defaultValue="Jesse"
-                          id="input-last-name"
-                          placeholder="Last name"
+                          // defaultValue="Jesse"
+                          // id="input-last-name"
+                          type="text"
+                          name="Fax"
+                          // placeholder="Last name"
                           type="text"
                         />
                       </FormGroup>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { deleteClient, updateClient } from "../../actions/clients";
-import  ClientDataService from "../../services/ClientService";
+import ClientDataService from "../../services/ClientService";
 // reactstrap components
 import Axios from "axios";
 import { Modal } from "react-bootstrap";
@@ -29,25 +29,26 @@ const ActiveClient = (props) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
   const initialClientState = {
     id: null,
     nom: "",
     email: "",
-    status: false
+    status: false,
   };
   const [currentClient, setCurrentClient] = useState(initialClientState);
   const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
-  const getClient = id => {
+  const getClient = (id) => {
     ClientDataService.get(id)
-      .then(response => {
+      .then((response) => {
         setCurrentClient(response.data);
         // console.log(response.data);
       })
-      .catch(e => {
+
+      .catch((e) => {
         console.log(e);
       });
   };
@@ -56,85 +57,109 @@ const ActiveClient = (props) => {
     getClient(props.id);
   }, [props.id]);
 
-  
+  ///////////////////////
+  const updateStatus = (status) => {
+    const data = {
+      id: currentClient.id,
+      nom: currentClient.title,
+      email: currentClient.description,
+      status: status,
+    };
 
- 
-///////////////////////
-const updateStatus = status => {
-  const data = {
-    id: currentClient.id,
-    nom: currentClient.title,
-    email: currentClient.description,
-    status: status
+    dispatch(updateClient(currentClient.id, data))
+      .then((response) => {
+        // console.log(response);
+
+        setCurrentClient({ ...currentClient, status: status });
+        setMessage("The status was updated successfully!");
+      })
+      .catch((e) => {
+        // console.log(e);
+      });
+    handleClose();
   };
-
-  dispatch(updateClient(currentClient.id, data))
-    .then(response => {
-      // console.log(response);
-
-      setCurrentClient({ ...currentClient, status: status });
-      setMessage("The status was updated successfully!");
-    })
-    .catch(e => {
-      // console.log(e);
-    });
-};
 
   return (
     <>
-      
-      <Button className="btn-icon btn-2"  size="sm" color="danger" type="button" onClick={handleShow}>
-            <i className="ni ni-fat-remove" />
-        </Button>
-        <Modal show={show} onHide={handleClose}>
-          <Card className="bg-secondary shadow">
-            <CardHeader className="bg-white border-0">
-              <Row className="align-items-center">
-                <Col xs="8">
-                  <h3 className="mb-0">Modifier Client</h3>
-                </Col>
-              </Row>
-            </CardHeader>
-            <CardBody>
-              <Form>
-                <h6 className="heading-small text-muted mb-4">
-                {currentClient.status ? "Active" : "Enable"}
-                </h6>
-                
-               
-                <hr className="my-4" />
-                <div className="pl-lg-4">
-                  <FormGroup>
-                    <Button variant="secondary" onClick={handleClose}>
-                      non
-                    </Button>
-                    {currentClient.status ? (
-                       <button
-                       className="badge badge-primary mr-2"
-                       onClick={() => updateStatus(false)}
-                     >
-                       Enable
-                     </button>
-                   ) : (
-                     <button
-                       className="badge badge-primary mr-2"
-                       onClick={() => updateStatus(true)}
-                     >
-                       Active
-                     </button>
-                   )}
+      {currentClient.status ? (
+       <Button
+       className="btn-icon btn-2"
+       size="sm"
+       color="danger"
+       type="button"
+       onClick={handleShow}
+     >
+       <i className="ni ni-fat-remove" />
+     </Button>
+      ) : (
+        <Button
+        className="btn-icon btn-2"
+        size="sm"
+        color="success"
+        type="button"
+        onClick={handleShow}
+      >
+        <i className="ni ni-check-bold" />
+      </Button>
+      )}
 
-                    <Button variant="primary"onClick={updateStatus}>
-                      oui
+      {/* <Button
+        className="btn-icon btn-2"
+        size="sm"
+        color="danger"
+        type="button"
+        onClick={handleShow}
+      >
+        <i className="ni ni-fat-remove" />
+      </Button> */}
+      <Modal show={show} onHide={handleClose}>
+        <Card className="bg-secondary shadow">
+          <CardHeader className="bg-white border-0">
+            <Row className="align-items-center">
+              <Col xs="8">
+                <h3 className="mb-0">Modifier Client</h3>
+              </Col>
+            </Row>
+          </CardHeader>
+          <CardBody>
+            <Form>
+              <h6 className="heading-small text-muted mb-4">
+                {currentClient.status ? "Active" : "Enable"}
+              </h6>
+
+              <hr className="my-4" />
+              <div className="pl-lg-4">
+                <FormGroup>
+                  <Button variant="secondary" onClick={handleClose}>
+                    non
+                  </Button>
+                  {currentClient.status ? (
+                    <Button
+                      variant="primary"
+                      //  className="badge badge-primary mr-2"
+                      onClick={() => updateStatus(false)}
+                    >
+                      Enable
                     </Button>
-                  </FormGroup>
-                </div>
-                
-              </Form>
-            </CardBody>
-          </Card>
-        </Modal>
-    
+                  ) : (
+                    <Button
+                      variant="primary"
+                      //  className="badge badge-primary mr-2"
+                      onClick={() => updateStatus(true)}
+                    >
+                      Active
+                    </Button>
+                  )}
+
+                  {/* <Button variant="primary"onClick={updateStatus}>
+                      oui
+                    </Button> */}
+                </FormGroup>
+              </div>
+            </Form>
+          </CardBody>
+        </Card>
+      </Modal>
     </>
   );
 };
