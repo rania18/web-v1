@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {  updateReparateur } from "../../actions/reparateurs";
-import ReparateurDataService from "../../services/ReparateurService";
+import { deleteClient, updateClient } from "../../actions/clients";
+import ClientDataService from "../../services/ClientService";
 // reactstrap components
 import Axios from "axios";
 import { Modal } from "react-bootstrap";
@@ -24,22 +24,22 @@ import {
 } from "reactstrap";
 // import { up } from "actions/clients";
 
-const ActiveReparateur = (props) => {
+const ActiveClient = (props) => {
   //Modal ajou
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
 
-  const [currentReparateur, setCurrentReparateur] = useState("");
-  // const [message, setMessage] = useState("");
+  const [currentClient, setCurrentClient] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
-  const getReparateur = (id) => {
-    ReparateurDataService.get(id)
+  const getClient = (id) => {
+    ClientDataService.get(id)
       .then((response) => {
-        setCurrentReparateur(response.data);
+        setCurrentClient(response.data);
         // console.log(response.data);
       })
 
@@ -49,23 +49,23 @@ const ActiveReparateur = (props) => {
   };
 
   useEffect(() => {
-    getReparateur(props.id);
+    getClient(props.id);
   }, [props.id]);
 
   ///////////////////////
   const updateStatus = (status) => {
     const data = {
-      id: currentReparateur.id,
-      nom: currentReparateur.nom,
-      email: currentReparateur.description,
+      id: currentClient.id,
+      nom: currentClient.nom,
+      email: currentClient.description,
       status: status,
     };
 
-    dispatch(updateReparateur(currentReparateur.id, data))
+    dispatch(updateClient(currentClient.id, data))
       .then((response) => {
         // console.log(response);
 
-        setCurrentReparateur({ ...currentReparateur, status: status });
+        setCurrentClient({ ...currentClient, status: status });
         setMessage("The status was updated successfully!");
       })
       .catch((e) => {
@@ -76,7 +76,7 @@ const ActiveReparateur = (props) => {
 
   return (
     <>
-      {currentReparateur.status ? (
+      {currentClient.status ? (
        <Button
        className="btn-icon btn-2"
        size="sm"
@@ -119,7 +119,7 @@ const ActiveReparateur = (props) => {
           <CardBody>
             <Form>
               <h6 className="heading-small text-muted mb-4">
-                {currentReparateur.status ? "Active" : "Enable"}
+                {currentClient.status ? "Active" : "Enable"}
               </h6>
 
               <hr className="my-4" />
@@ -128,7 +128,7 @@ const ActiveReparateur = (props) => {
                   <Button variant="secondary" onClick={handleClose}>
                     non
                   </Button>
-                  {currentReparateur.status ? (
+                  {currentClient.status ? (
                     <Button
                       variant="primary"
                       //  className="badge badge-primary mr-2"
@@ -159,4 +159,4 @@ const ActiveReparateur = (props) => {
   );
 };
 
-export default ActiveReparateur;
+export default ActiveClient;

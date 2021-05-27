@@ -45,7 +45,8 @@ import classnames from 'classnames';
 import { retrieveReparateurs } from "actions/reparateurs";
 import AddReparateur from "./AddReparateur";
 import EditReparateur from "./EditReparateur";
-import ActiveReparateur from "./ActiveReparateur";
+import ActiveReparateur from "./ActiveClient";
+import ActiveClient from "./ActiveClient";
 
 const Clients = (props) => {
 
@@ -56,9 +57,11 @@ const Clients = (props) => {
   }
 
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
 
-  const handleShow = () => setShow(true);
+  // const handleShow = () => setShow(true);
+
+
   const clients = useSelector(state => state.clients);
   const dispatch = useDispatch();
 
@@ -69,44 +72,42 @@ const Clients = (props) => {
 
 
   //status
-  const initialClientState = {
-    id: null,
-    nom: "",
-    email: "",
-    status: false
-  };
-  const [currentClient, setCurrentClient] = useState(initialClientState);
-  const [message, setMessage] = useState("");
-  const updateStatus = status => {
-    const data = {
-      // id: currentClient.id,
-      // nom: currentClient.title,
-      // email: currentClient.description,
-      status: status
-    };
+  // const initialClientState = {
+  //   id: null,
+  //   nom: "",
+  //   email: "",
+  //   status: false
+  // };
+  // const [currentClient, setCurrentClient] = useState(initialClientState);
+  // const [message, setMessage] = useState("");
+  // const updateStatus = status => {
+  //   const data = {
+  //     // id: currentClient.id,
+  //     // nom: currentClient.title,
+  //     // email: currentClient.description,
+  //     status: status
+  //   };
   
-    dispatch(updateClient(currentClient.id, data))
-      .then(response => {
-        // console.log(response);
+  //   dispatch(updateClient(currentClient.id, data))
+  //     .then(response => {
+  //       // console.log(response);
   
-        setCurrentClient({ ...currentClient, status: status });
-        setMessage("The status was updated successfully!");
-      })
-      .catch(e => {
-        // console.log(e);
-      });
-    }
+  //       setCurrentClient({ ...currentClient, status: status });
+  //       setMessage("The status was updated successfully!");
+  //     })
+  //     .catch(e => {
+  //       // console.log(e);
+  //     });
+  //   }
+
+
   //reparateur
-  
 
   const reparateurs = useSelector(state => state.reparateurs);
-
-
   useEffect(() => {
     dispatch(retrieveReparateurs());
   }, []);
 
-  //status
   
   return (
     <>
@@ -207,13 +208,7 @@ const Clients = (props) => {
                       {client.tel}
                       </Badge>
                     </td>
-                    {/* <td  scope="col">{client.fax}</td> */}
-                    {/* <td>
-                      <Badge color="" className="badge-dot mr-4">
-                      {client.fax}
-                      </Badge>
-                    </td> */}
-                    {/* <td  scope="col">{client.email}</td> */}
+                   
                     <td>
                       <Badge color="" className="badge-dot mr-4">
                       {client.email}
@@ -221,16 +216,17 @@ const Clients = (props) => {
                     </td>
                     <td>
                       <Badge color="" className="badge-dot mr-4">
-                        {client.status ? <i className="bg-success" /> : <i className="bg-warning" />}
+                        {client.status ? <i className="bg-success" /> 
+                        : <i className="bg-warning" />}
 
                         {client.status ? "Active" : "Enable"}
                       </Badge>
                     </td>
                     
                     <td><DetailClient id={client.id}/>
-                      <ActiveReparateur id={client.id} />
+                      <ActiveClient id={client.id} />
                     <EditClient id={client.id}/> 
-                  <DeleteClient id={client.id}/> </td>
+                    <DeleteClient id={client.id}/> </td>
 
 
                   </tr>
@@ -242,6 +238,8 @@ const Clients = (props) => {
             </Col>
           </Row>
         </TabPane>
+
+        {/* //Reparateur */}
         <TabPane tabId="2">
           <Row>      
                   <Col sm="12">
@@ -254,16 +252,28 @@ const Clients = (props) => {
                     <th scope="col" />
                   </tr>
                 </thead>
-                {reparateurs.map((reparateur, index) => ( 
-                <tbody>
+    
+                <tbody>             
+                  {reparateurs.map((reparateur, index) => (
                   <tr>
                     <td>{reparateur.nom}</td>
                     <td>{reparateur.email} </td>
-                    <td><EditReparateur id={reparateur.id}/> </td>
-                    <td><ActiveReparateur id={reparateur.id}/> </td>
+                    <td>
+                      <Badge color="" className="badge-dot mr-4">
+                        {reparateur.status ? <i className="bg-success" /> : <i className="bg-warning" />}
+
+                        {reparateur.status ? "Active" : "Enable"}
+                      </Badge>
+                    </td>
+                    <td>
+                      <ActiveReparateur id={reparateur.id} />
+                    <EditReparateur id={reparateur.id}/> 
+                   </td>
+
                   </tr>
+              ))}
                 </tbody>
-                ))}
+                
              </Table>
              
          </Col> 

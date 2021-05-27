@@ -58,6 +58,7 @@ const AddReparateur = () => {
       .catch((e) => {
        // console.log(e);
       });
+      handleClose();
   };
 
   

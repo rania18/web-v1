@@ -3,67 +3,69 @@ const Reparateur = db.reparateurs;
 const Panne = db.pannes;
 const Op = db.Sequelize.Op;
 
-// // Create and Save new Reparateurs
-// exports.createReparateur = (reparateur) => {
-//   return Reparateur.create({
-//     nom: reparateur.nom,
-//     email: reparateur.email,
-//   })
-//     .then((reparateur) => {
-//       console.log(">> Created reparateur: " + JSON.stringify(reparateur, null, 4));
-//       return reparateur;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while creating reparateur: ", err);
-//     });
-// };
+// Create and Save new Reparateurs
+exports.createReparateur = (reparateur) => {
+  return Reparateur.create({
+    nom: reparateur.nom,
+    email: reparateur.email,
+    status: reparateur.status,
 
-// // Create and Save new pannes
-// exports.createPanne = ( reparateurId , panne) => {
-//   return Panne.create({
-//     name: panne.name,
-//     text: panne.text,
-//     reparateurId: reparateurId,
-//   })
-//     .then((panne) => {
-//       console.log(">> Created panne: " + JSON.stringify(panne, null, 4));
-//       return panne;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while creating panne: ", err);
-//     });
-// };
+  })
+    .then((reparateur) => {
+      console.log(">> Created reparateur: " + JSON.stringify(reparateur, null, 4));
+      return reparateur;
+    })
+    .catch((err) => {
+      console.log(">> Error while creating reparateur: ", err);
+    });
+};
 
-// // Get the comments for a given reparateur
-// exports.findReparateurById = (reparateurId) => {
-//   return Reparateur.findByPk(reparateurId, { include: ["pannes"] })
-//     .then((reparateur) => {
-//       return reparateur;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while finding reparateur: ", err);
-//     });
-// };
+// Create and Save new pannes
+exports.createPanne = ( reparateurId , panne) => {
+  return Panne.create({
+    name: panne.name,
+    text: panne.text,
+    reparateurId: reparateurId,
+  })
+    .then((panne) => {
+      console.log(">> Created panne: " + JSON.stringify(panne, null, 4));
+      return panne;
+    })
+    .catch((err) => {
+      console.log(">> Error while creating panne: ", err);
+    });
+};
 
-// // Get the pannes for a given panne id
-// exports.findPanneById = (id) => {
-//   return Panne.findByPk(id, { include: ["reparateur"] })
-//     .then((panne) => {
-//       return panne;
-//     })
-//     .catch((err) => {
-//       console.log(">> Error while finding panne: ", err);
-//     });
-// };
+// Get the comments for a given reparateur
+exports.findReparateurById = (reparateurId) => {
+  return Reparateur.findByPk(reparateurId, { include: ["pannes"] })
+    .then((reparateur) => {
+      return reparateur;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding reparateur: ", err);
+    });
+};
 
-// // Get all reparateurs include pannes
-// exports.findAll = () => {
-//   return Reparateur.findAll({
-//     include: ["pannes"],
-//   }).then((reparateurs) => {
-//     return reparateurs;
-//   });
-// };
+// Get the pannes for a given panne id
+exports.findPanneById = (id) => {
+  return Panne.findByPk(id, { include: ["reparateur"] })
+    .then((panne) => {
+      return panne;
+    })
+    .catch((err) => {
+      console.log(">> Error while finding panne: ", err);
+    });
+};
+
+// Get all reparateurs include pannes
+exports.findAll = () => {
+  return Reparateur.findAll({
+    include: ["pannes"],
+  }).then((reparateurs) => {
+    return reparateurs;
+  });
+};
 
 
 //-----CRUD------
@@ -84,7 +86,7 @@ exports.create = (req, res) => {
   const reparateur = {
     nom: req.body.nom,
     email: req.body.email,
-    //published: req.body.published ? req.body.published : false
+    status: req.body.status ? req.body.status : false
   };
 
   // Save reparateur in the database
@@ -199,9 +201,9 @@ exports.deleteAll = (req, res) => {
     });
 };
 
-// find all published Panne
-exports.findAllPublished = (req, res) => {
-  Reparateur.findAll({ where: { published: true } })
+// find all status Panne
+exports.findAllStatus = (req, res) => {
+  Reparateur.findAll({ where: { status: true } })
     .then(data => {
       res.send(data);
     })

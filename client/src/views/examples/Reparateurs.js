@@ -31,7 +31,7 @@ import { Button } from "reactstrap";
 import { retrieveReparateurs } from "actions/reparateurs";
 import AddReparateur from "./AddReparateur";
 import EditReparateur from "./EditReparateur";
-import ActiveReparateur from "./ActiveReparateur";
+import ActiveReparateur from "./ActiveClient";
 
 const Reparateurs = () => {
 

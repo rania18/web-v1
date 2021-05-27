@@ -14,6 +14,9 @@ module.exports = app => {
   // Retrieve a single clients with id
   router.get("/:id", clients.findOne);
 
+  // Retrieve all status clients
+  router.get("/status", clients.findAllStatus);
+
   // Update a clients with id
   router.put("/:id", clients.update);
 

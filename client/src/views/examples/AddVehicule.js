@@ -74,6 +74,7 @@ const AddVehicule = () => {
       .catch((e) => {
        // console.log(e);
       });
+      handleClose()
   };
 
   
@@ -107,7 +108,7 @@ const AddVehicule = () => {
                           className="form-control-label"
                           htmlFor="input-username"
                         >
-                          Nom
+                          Immatricule
                         </label>
                         <Input
                           className="form-control-alternative"
