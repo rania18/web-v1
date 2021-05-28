@@ -24,8 +24,8 @@ const removeAll = () => {
   return http.delete(`/vehicules`);
 };
 
-const findByTitle = title => {
-  return http.get(`/vehicules?title=${title}`);
+const findByTitle = immatricule => {
+  return http.get(`/vehicules?immatricule =${immatricule}`);
 };
 
 const VehiculeService = {

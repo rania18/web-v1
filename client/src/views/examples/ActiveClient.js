@@ -151,7 +151,9 @@ const ActiveClient = (props) => {
                     </Button> */}
                 </FormGroup>
               </div>
+           
             </Form>
+        
           </CardBody>
         </Card>
       </Modal>

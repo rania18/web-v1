@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {  updateReparateur } from "../../actions/reparateurs";
+import { deleteReparateur, updateReparateur } from "../../actions/reparateurs";
 import ReparateurDataService from "../../services/ReparateurService";
 // reactstrap components
 import Axios from "axios";
@@ -22,7 +22,6 @@ import {
   Row,
   Col,
 } from "reactstrap";
-// import { up } from "actions/clients";
 
 const ActiveReparateur = (props) => {
   //Modal ajou
@@ -32,7 +31,7 @@ const ActiveReparateur = (props) => {
 
 
   const [currentReparateur, setCurrentReparateur] = useState("");
-  // const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   const dispatch = useDispatch();
 
@@ -112,7 +111,7 @@ const ActiveReparateur = (props) => {
           <CardHeader className="bg-white border-0">
             <Row className="align-items-center">
               <Col xs="8">
-                <h3 className="mb-0">Modifier Client</h3>
+                <h3 className="mb-0">Modifier Reparateur</h3>
               </Col>
             </Row>
           </CardHeader>
@@ -151,7 +150,9 @@ const ActiveReparateur = (props) => {
                     </Button> */}
                 </FormGroup>
               </div>
+           
             </Form>
+        
           </CardBody>
         </Card>
       </Modal>

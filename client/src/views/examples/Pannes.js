@@ -41,7 +41,8 @@ import AddPanne from "./AddPanne";
 import EditPanne from "./EditPanne";
 import DeletePanne from "./DeletePanne";
 import DetailPanne from "./DetailPanne";
-import { Input } from "@material-ui/core";
+// import { Input } from "@material-ui/core";
+import { InputBase } from "@material-ui/core";
 
 const Pannes = () => {
 
@@ -93,8 +94,8 @@ const Pannes = () => {
               <Col className="text-center" xs="8"> 
                      </Col>
                 </Col>
+
                 <Row>
-               
                 <Col className="text-center" xs="8"> 
                 <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <FormGroup className="mb-0">
@@ -104,7 +105,7 @@ const Pannes = () => {
                     <i className="fas fa-search" />
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input placeholder="Search" type="text"
+                <InputBase placeholder="Search" type="text"
                 placeholder="Search by title"
                 value={searchTitle}
                 onChange={onChangeSearchTitle}

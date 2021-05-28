@@ -8,7 +8,7 @@ exports.createReparateur = (reparateur) => {
   return Reparateur.create({
     nom: reparateur.nom,
     email: reparateur.email,
-    status: reparateur.status,
+    // status: reparateur.status,
 
   })
     .then((reparateur) => {
@@ -86,7 +86,8 @@ exports.create = (req, res) => {
   const reparateur = {
     nom: req.body.nom,
     email: req.body.email,
-    status: req.body.status ? req.body.status : false
+    status: req.body.status,
+    //  ? req.body.status : false
   };
 
   // Save reparateur in the database

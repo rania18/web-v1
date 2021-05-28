@@ -21,9 +21,6 @@ import {
 import { history } from "../../helpers/history";
 import { logout } from "../../actions/auth";
 import { clearMessage } from "../../actions/message";
-
-//
-import { findPannesByTitle } from "actions/pannes";
 const AdminNavbar = (props) => {
 
   const [showReparateurBoard, setShowReparateurBoard] = useState(false);
@@ -49,28 +46,6 @@ const AdminNavbar = (props) => {
     dispatch(logout());
   };
 
-  //
-  const [searchTitle, setSearchTitle] = useState("");
-  const [panne , setPanne ] = useState(null);
-  const [index, setIndex] = useState(-1);
-
-
-  const refreshData = () => {
-    setPanne(null);
-    setIndex(-1);
-  };
-
-  const findByTitle = () => {
-    refreshData();
-    dispatch(findPannesByTitle(searchTitle));
-  };
-
-  const onChangeSearchTitle = e => {
-    const searchTitle = e.target.value;
-    setSearchTitle(searchTitle);
-  };
-
-
   return (
     <>
       <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
@@ -89,22 +64,10 @@ const AdminNavbar = (props) => {
                     <i className="fas fa-search" />
                   </InputGroupText>
                 </InputGroupAddon>
-                <Input placeholder="Search" type="text"
-                placeholder="Search by title"
-                value={searchTitle}
-                onChange={onChangeSearchTitle}
-                />
-                <button
-              className="btn btn-outline-secondary"
-              type="button"
-              onClick={findByTitle}
-            >
-              Search
-            </button>
+                <Input placeholder="Search" type="text" />
               </InputGroup>
             </FormGroup>
           </Form>
-         
           {/* {currentUser ? ( */}
           <Nav className="align-items-center d-none d-md-flex" navbar>
             <UncontrolledDropdown nav>
@@ -121,7 +84,7 @@ const AdminNavbar = (props) => {
                   </span>
                   <Media className="ml-2 d-none d-lg-block">
                     <span className="mb-0 text-sm font-weight-bold">
-                      {/* Rania hamdi */}
+                      Rania hamdi
                       {/* {currentUser.username} */}
                     </span>
                   </Media>

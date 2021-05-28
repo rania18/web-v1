@@ -29,13 +29,13 @@ var routes = [
     component: Clients,
     layout: "/admin",
   },
-  {
-    path: "/reparateurs",
-    name: "Gestion des réparateurs",
-    icon: "ni ni-single-02 text-yellow",
-    component: Reparateurs,
-    layout: "/admin",
-  },
+  // {
+  //   path: "/reparateurs",
+  //   name: "Gestion des réparateurs",
+  //   icon: "ni ni-single-02 text-yellow",
+  //   component: Reparateurs,
+  //   layout: "/admin",
+  // },
   {
     path: "/vehicules",
     name: "Gestion des véhicules",

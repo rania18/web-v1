@@ -12,7 +12,7 @@ module.exports = app => {
   // Retrieve a single reparateurs with id
   router.get("/:id", reparateurs.findOne);
 
-  // Retrieve all status pannes
+  // Retrieve all status reparateurs
   router.get("/status", reparateurs.findAllStatus);
 
   // Update a reparateurs with id

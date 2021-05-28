@@ -127,6 +127,7 @@ const EditTypepanne = (props) => {
                         >
                           Description
                         </label>
+                        
                         <Input
                           className="form-control-alternative"
                           // id="input-email"

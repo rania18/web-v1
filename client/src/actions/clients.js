@@ -83,9 +83,9 @@ export const deleteAllClients = () => async (dispatch) => {
   }
 };
 
-export const findClientsByTitle = (name) => async (dispatch) => {
+export const findClientsByTitle = (nom) => async (dispatch) => {
   try {
-    const res = await  ClientDataService.findByTitle(name);
+    const res = await  ClientDataService.findByTitle(nom);
 
     dispatch({
       type: RETRIEVE_CLIENTS,

@@ -26,6 +26,12 @@ import {
   Container,
   Row,
   UncontrolledTooltip,
+  Form,
+  FormGroup,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input,
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
@@ -36,6 +42,8 @@ import DeleteVehicule from "./DeleteVehicule";
 import DetailVehicule from "./DetailVehicule";
 import Profile from "./Profile"
 import { Link } from "react-router-dom";
+import { findPannesByTitle } from "actions/pannes";
+import { InputBase } from "@material-ui/core";
 
 const Vehicule = () => {
   const [copiedText, setCopiedText] = useState();
@@ -48,6 +56,29 @@ const Vehicule = () => {
     console.log("useeffect")
     dispatch(retrieveVehicules());
   }, []);
+
+
+   /// Searche
+    const [searchTitle, setSearchTitle] = useState("");
+    const [vehicule , setVehicule ] = useState(null);
+    const [index, setIndex] = useState(-1);
+  
+  
+    const refreshData = () => {
+      setVehicule(null);
+      setIndex(-1);
+    };
+  
+    const findByTitle = () => {
+      refreshData();
+      dispatch(findPannesByTitle(searchTitle));
+    };
+  
+    const onChangeSearchTitle = e => {
+      const searchTitle = e.target.value;
+      setSearchTitle(searchTitle);
+    };
+  
   return (
     <>
       <Header />
@@ -59,9 +90,43 @@ const Vehicule = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <h3 className="mb-0">Card véhicules</h3>
-                <Col className="text-right" xs="12">
-                <AddVehicule />
+
+
+                <Row>
+                <Col className="text-center" xs="8"> 
+                <Form className="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
+            <FormGroup className="mb-0">
+              <InputGroup className="input-group-alternative">
+                <InputGroupAddon addonType="prepend">
+                  <InputGroupText>
+                    <i className="fas fa-search" />
+                  </InputGroupText>
+                </InputGroupAddon>
+                <InputBase placeholder="Search" type="text"
+                placeholder="Search by title"
+                value={searchTitle}
+                onChange={onChangeSearchTitle}
+                />
+                <button
+              className="btn btn-outline-secondary"
+              type="button"
+              onClick={findByTitle}
+            >
+              Search
+            </button>
+              </InputGroup>
+            </FormGroup>
+          </Form>
                 </Col>
+                 <Col className="text-right" xs="4">
+                 <AddVehicule />
+                </Col>
+                </Row>
+
+
+                {/* <Col className="text-right" xs="12">
+                <AddVehicule />
+                </Col> */}
               </CardHeader>
               <Table className="align-items-center table-flush" responsive>
                 <thead className="thead-light">

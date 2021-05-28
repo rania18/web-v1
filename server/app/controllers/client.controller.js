@@ -18,7 +18,9 @@ exports.createClient = (client) => {
     fax: client.fax,
     email: client.email,
     tel: client.tel,
-    status: client.status,
+    // status: client.status,
+    status: req.body.status ? req.body.status : false
+
   })
     .then((client) => {
       console.log(">> Created client: " + JSON.stringify(client, null, 4));
