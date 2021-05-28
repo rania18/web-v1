@@ -42,8 +42,10 @@ import DeleteVehicule from "./DeleteVehicule";
 import DetailVehicule from "./DetailVehicule";
 import Profile from "./Profile"
 import { Link } from "react-router-dom";
-import { findPannesByTitle } from "actions/pannes";
+// import { findPannesByTitle } from "actions/vehicules";
 import { InputBase } from "@material-ui/core";
+import DeleteAllVehicule from "./DeleteAllVehicule";
+import { findPannesByTitle } from "actions/pannes";
 
 const Vehicule = () => {
   const [copiedText, setCopiedText] = useState();
@@ -148,7 +150,14 @@ const Vehicule = () => {
                 <tbody>
                 
                     
-                     <tr> <td>{vehicule.immatricule}</td>
+                     <tr>
+                       <th>
+                     <Media>
+                            <span className="mb-0 text-sm">
+                              {vehicule.immatricule}
+                            </span>
+                          </Media>
+                      </th>
                     <td>{vehicule.marque}</td>
                     <td>{vehicule.PMC}</td>
                     <td>{vehicule.nChassis}</td>
@@ -171,7 +180,9 @@ const Vehicule = () => {
                 </tbody>
                  ))}
             </Table>
+            
               <CardFooter className="py-4">
+                <DeleteAllVehicule />
                 <nav aria-label="...">
                   <Pagination
                     className="pagination justify-content-end mb-0"

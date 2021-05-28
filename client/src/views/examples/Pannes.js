@@ -43,6 +43,7 @@ import DeletePanne from "./DeletePanne";
 import DetailPanne from "./DetailPanne";
 // import { Input } from "@material-ui/core";
 import { InputBase } from "@material-ui/core";
+import DeleteAllPanne from "./DeleteAllPanne"
 
 const Pannes = () => {
 
@@ -179,8 +180,11 @@ const Pannes = () => {
                   
                 </tbody>
                 ))}
+               
               </Table>
-              <CardFooter className="py-4">
+              <CardFooter className="py-4"> 
+                           <DeleteAllPanne />
+
                 <nav aria-label="...">
                   <Pagination
                     className="pagination justify-content-end mb-0"

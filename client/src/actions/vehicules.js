@@ -64,7 +64,7 @@ export const deleteVehicule = (id) => async (dispatch) => {
   }
 };
 
-export const deleteAllVehicukes = () => async (dispatch) => {
+export const deleteAllVehicules = () => async (dispatch) => {
   try {
     const res = await VehiculeDataService.removeAll();
 
