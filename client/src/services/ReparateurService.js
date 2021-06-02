@@ -8,8 +8,9 @@ const get = id => {
   return http.get(`/reparateurs/${id}`);
 };
 
-const create = data => {
+const create = data => {console.log(data)
   return http.post("/reparateurs", data);
+  
 };
 
 const update = (id, data) => {

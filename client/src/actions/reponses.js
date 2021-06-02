@@ -8,9 +8,9 @@ import {
 
 import ReponseDataService from "../services/ReponseService";
 
-export const createReponse = (title, description) => async (dispatch) => {
+export const createReponse = (title, description,questionId) => async (dispatch) => {
   try {
-    const res = await ReponseDataService.create({ title, description });
+    const res = await ReponseDataService.create({ title, description,questionId });
 
     dispatch({
       type: CREATE_REPONSE,

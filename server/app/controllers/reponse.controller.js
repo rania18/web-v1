@@ -72,17 +72,22 @@ exports.findAll = () => {
 // Create and Save a new Reponse
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.title) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
-
+  // if (!req.body.title) {
+  //   res.status(400).send({
+  //     message: "Content can not be empty!"
+  //   });
+  //   return;
+  // }
+console.log(req.body.title)
   // Create a Reponse
   const reponse = {
-    title: req.body.title,
-    description: req.body.description,
+    //title: req.body.title,
+    description: req.body.title.description,
+    questionId: req.body.title.questionId,
+    clientId: req.body.title.clientId,
+
+
+
     //published: req.body.published ? req.body.published : false
   };
 

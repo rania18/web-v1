@@ -33,17 +33,20 @@ db.user = require("../models/user.model.js")(sequelize, Sequelize);
 db.role = require("../models/role.model.js")(sequelize, Sequelize);
 
 
-db.reponses.hasMany(db.questions, { as: "questions" });
-db.questions.belongsTo(db.reponses, {
-  foreignKey: "reponseId",
-  as: "reponse",
-});
+
 
 db.questions.hasMany(db.enquetes, { as: "enquetes" });
 db.enquetes.belongsTo(db.questions, {
   foreignKey: "questionId",
   as: "question",
 });
+
+db.questions.hasMany(db.reponses, { as: "reponses" });
+db.reponses.belongsTo(db.questions, {
+  foreignKey: "questionId",
+  as: "question",
+});
+
 
 db.vehicules.hasMany(db.pannes, { as: "pannes" });
 db.pannes.belongsTo(db.vehicules, {

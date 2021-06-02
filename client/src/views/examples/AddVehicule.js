@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createVehicule } from "../../actions/vehicules";
 // reactstrap components
@@ -21,6 +21,8 @@ import {
   Row,
   Col,
 } from "reactstrap";
+import { retrieveReparateurs } from "actions/reparateurs";
+import Reparateurs from "./Reparateurs";
 
 const AddVehicule = () => {
   //Modal ajou
@@ -77,6 +79,12 @@ const AddVehicule = () => {
       handleClose()
   };
 
+//reparateur
+useEffect(() => {
+  dispatch(retrieveReparateurs());
+  console.log(Reparateurs)
+
+}, []);
   
 
   return (

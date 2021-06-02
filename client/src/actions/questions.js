@@ -11,7 +11,7 @@ import QuestionDataService from "../services/QuestionService";
 export const createQuestion = (name, text) => async (dispatch) => {
   try {
     const res = await QuestionDataService.create({ name, text });
-
+    
     dispatch({
       type: CREATE_QUESTION,
       payload: res.data,

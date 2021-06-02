@@ -8,6 +8,7 @@ import Login from "views/examples/Login.js";
 import Satisfaction from "views/examples/Satisfaction.js";
 import Pannes from "views/examples/Pannes";
 import TypePannes from "views/examples/Typepannes";
+import Enquete from "views/examples/Enquete";
 
 import Clients from "views/examples/Clients";
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
@@ -92,6 +93,13 @@ var routes = [
     // icon: "ni ni-circle-08 text-pink",
   component: DetailVehicules,
     layout: "/admin",
+  },
+  {
+    path: "/Enquete",
+    name: "Enquete",
+    icon: "ni ni-circle-08 text-pink",
+    component: Enquete,
+    layout: "/auth",
   },
 
 ];

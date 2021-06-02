@@ -22,20 +22,26 @@ import {
   Container,
   Row,
   UncontrolledTooltip,
+  NavItem,
+  NavLink,
 } from "reactstrap";
 // core components
 import Header from "components/Headers/Header.js";
 import { retrieveEnquetes } from "actions/enquetes";
+import AddQuestion from "./AddQuestion";
+import classnames from "classnames";
+
 
 const Satisfaction = () => {
-  
+  //get question
   const enquetes = useSelector(state => state.enquetes);
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     dispatch(retrieveEnquetes());
   }, []);
+
+
   return (
     <>
       <Header />
@@ -47,8 +53,13 @@ const Satisfaction = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <h3 className="mb-0">Card tables</h3>
+                <AddQuestion />
               </CardHeader>
-              <Table className="align-items-center table-flush" responsive>
+
+         
+              <Table className="align-items-center table-flush" responsive> 
+                     
+
                 <thead className="thead-light">
                   <tr>
                     <th scope="col">Project</th>
@@ -230,6 +241,8 @@ const Satisfaction = () => {
                 </tbody>
                   ))}
              </Table>
+             
+            
               <CardFooter className="py-4">
                 <nav aria-label="...">
                   <Pagination
@@ -282,6 +295,7 @@ const Satisfaction = () => {
                   </Pagination>
                 </nav>
               </CardFooter>
+           
             </Card>
           </div>
         </Row>

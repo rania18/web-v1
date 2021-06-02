@@ -6,6 +6,10 @@ module.exports = (sequelize, DataTypes) => {
     text: {
       type: DataTypes.STRING
     }
+    // ,
+    // status: {
+    //   type: DataTypes.BOOLEAN
+    // }
   });
 
   return Question;
